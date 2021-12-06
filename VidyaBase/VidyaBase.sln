@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31829.152
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VidyaBase.UI.Android", "VidyaBase.UI\VidyaBase.UI.Android\VidyaBase.UI.Android.csproj", "{D6B29579-7B78-4DAD-9895-06D01123FD45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VidyaBase.UI", "VidyaBase.UI\VidyaBase.UI\VidyaBase.UI.csproj", "{170250DC-609F-45C9-B85C-14B816A35208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VidyaBase.BLL", "VidyaBase.BLL\VidyaBase.BLL.csproj", "{245456A4-1A6A-4786-97F1-9BCDA4681C86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VidyaBase.DAL", "VidyaBase.DAL\VidyaBase.DAL.csproj", "{3211C7C5-E663-4EDF-B7F3-3AB17CE6E9A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VidyaBase.DOMAIN", "VidyaBase.DOMAIN\VidyaBase.DOMAIN.csproj", "{2903DB2A-A5A3-4A36-B503-AC2E6BE7B68A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6B29579-7B78-4DAD-9895-06D01123FD45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6B29579-7B78-4DAD-9895-06D01123FD45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6B29579-7B78-4DAD-9895-06D01123FD45}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D6B29579-7B78-4DAD-9895-06D01123FD45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6B29579-7B78-4DAD-9895-06D01123FD45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6B29579-7B78-4DAD-9895-06D01123FD45}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{170250DC-609F-45C9-B85C-14B816A35208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{170250DC-609F-45C9-B85C-14B816A35208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{170250DC-609F-45C9-B85C-14B816A35208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{170250DC-609F-45C9-B85C-14B816A35208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{245456A4-1A6A-4786-97F1-9BCDA4681C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245456A4-1A6A-4786-97F1-9BCDA4681C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245456A4-1A6A-4786-97F1-9BCDA4681C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245456A4-1A6A-4786-97F1-9BCDA4681C86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3211C7C5-E663-4EDF-B7F3-3AB17CE6E9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3211C7C5-E663-4EDF-B7F3-3AB17CE6E9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3211C7C5-E663-4EDF-B7F3-3AB17CE6E9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3211C7C5-E663-4EDF-B7F3-3AB17CE6E9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2903DB2A-A5A3-4A36-B503-AC2E6BE7B68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2903DB2A-A5A3-4A36-B503-AC2E6BE7B68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2903DB2A-A5A3-4A36-B503-AC2E6BE7B68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2903DB2A-A5A3-4A36-B503-AC2E6BE7B68A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36ACAF61-88A7-474F-BE42-F8F44277C66D}
+	EndGlobalSection
+EndGlobal
