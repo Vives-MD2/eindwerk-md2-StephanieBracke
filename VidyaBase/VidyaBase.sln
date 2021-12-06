@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VidyaBase.DAL", "VidyaBase.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VidyaBase.DOMAIN", "VidyaBase.DOMAIN\VidyaBase.DOMAIN.csproj", "{2903DB2A-A5A3-4A36-B503-AC2E6BE7B68A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VidyaBase.MOCK", "VidyaBase.MOCK\VidyaBase.MOCK.csproj", "{F4B4C1D7-B6F3-4D03-88AA-4EBB65BF34C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{2903DB2A-A5A3-4A36-B503-AC2E6BE7B68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2903DB2A-A5A3-4A36-B503-AC2E6BE7B68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2903DB2A-A5A3-4A36-B503-AC2E6BE7B68A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4B4C1D7-B6F3-4D03-88AA-4EBB65BF34C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4B4C1D7-B6F3-4D03-88AA-4EBB65BF34C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4B4C1D7-B6F3-4D03-88AA-4EBB65BF34C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4B4C1D7-B6F3-4D03-88AA-4EBB65BF34C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

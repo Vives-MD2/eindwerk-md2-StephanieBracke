@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VidyaBase.DOMAIN
 {
-    class Achievement : GObject
+    public class Achievement : GObject
     {
         public int ID { get; set; }
         public string Name { get; set; }
