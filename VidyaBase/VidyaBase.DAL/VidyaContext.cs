@@ -97,24 +97,18 @@ namespace VidyaBase.DAL
             #endregion
 
             #region MANY-TO-MANY
-            modelBuilder.Entity<Collection>()
-                    .HasKey(x => new { x.ID, x.UserID});
+            modelBuilder.Entity<UserAchievement>()
+                    .HasKey(a => new { a.UserID, a.AchievementID });
 
-            modelBuilder.Entity<Achievement>()
-                    .HasKey(x => new { x.ID, x.UserID });
+            modelBuilder.Entity<WishlistGame>()
+                    .HasKey(w => new { w.GameID, w.WishlistID });
 
-            modelBuilder.Entity<Wishlist>()
-                    .HasKey(x => new { x.ID, x.UserID });
+            modelBuilder.Entity<PublisherGame>()
+                    .HasKey(p => new { p.GameID, p.PublisherID });
 
-            modelBuilder.Entity<UserGameCollection>()
-                .HasOne(x => x.CollectionID)
-                .WithMany(c => .)
-                .HasForeignKey();
+            modelBuilder.Entity<GameCategory>()
+                    .HasKey(g => new { g.GameID, g.CategoryID });
 
-            modelBuilder.Entity<OwnedGame>()
-                .HasOne(x => x.GameID)
-                .WithMany()
-                .HasForeignKey();
             #endregion
         }
     }
