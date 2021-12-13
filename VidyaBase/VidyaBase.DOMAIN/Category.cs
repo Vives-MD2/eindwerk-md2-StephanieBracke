@@ -4,10 +4,9 @@ using System.Text;
 
 namespace VidyaBase.DOMAIN
 {
-    public class Collection : GObject
+    public class Category
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public int UserID { get; set; }
     }
 }

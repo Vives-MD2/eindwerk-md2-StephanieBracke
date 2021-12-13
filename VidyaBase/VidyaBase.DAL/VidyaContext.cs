@@ -96,16 +96,26 @@ namespace VidyaBase.DAL
                     .HasMaxLength(75);
             #endregion
 
-            //#region MANY-TO-MANY
-            //modelBuilder.Entity<GameCollection>()
-            //        .HasKey(x => new { x.GameID, x.CollectionID });
+            #region MANY-TO-MANY
+            modelBuilder.Entity<Collection>()
+                    .HasKey(x => new { x.ID, x.UserID});
 
-            //modelBuilder.Entity<GameWishlist>()
-            //        .HasKey(x => new { x.GameID, x.WishlistID });
+            modelBuilder.Entity<Achievement>()
+                    .HasKey(x => new { x.ID, x.UserID });
 
-            //modelBuilder.Entity<GameAchievements>()
-            //        .HasKey(x => new { x.GameID, x.AchievementID });
-            //#endregion
+            modelBuilder.Entity<Wishlist>()
+                    .HasKey(x => new { x.ID, x.UserID });
+
+            modelBuilder.Entity<UserGameCollection>()
+                .HasOne(x => x.CollectionID)
+                .WithMany(c => .)
+                .HasForeignKey();
+
+            modelBuilder.Entity<OwnedGame>()
+                .HasOne(x => x.GameID)
+                .WithMany()
+                .HasForeignKey();
+            #endregion
         }
     }
 }

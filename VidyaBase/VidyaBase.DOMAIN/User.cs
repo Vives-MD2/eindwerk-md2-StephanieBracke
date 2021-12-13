@@ -13,8 +13,8 @@ namespace VidyaBase.DOMAIN
         public string Email { get; set; }
 
         //Gebruiker kan meerdere lijsten hebben
-        //public ICollection<UserWishlist> Wishlists { get; set; }
-        //public ICollection<UserCollection> Collections { get; set; }
-        //public ICollection<UserAchievement> Achievements { get; set; }
+        public ICollection<Wishlist> Wishlists { get; set; }
+        public ICollection<Achievement> Achievements { get; set; }
+        public ICollection<Collection> Collections { get; set; }
     }
 }
