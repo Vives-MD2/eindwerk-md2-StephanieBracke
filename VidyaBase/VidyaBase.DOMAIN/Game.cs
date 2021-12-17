@@ -9,5 +9,8 @@ namespace VidyaBase.DOMAIN
         public int ID { get; set; }
         public string Title { get; set; }
         public string EAN { get; set; }
+
+        public ICollection<CollectionOwnedGame> OwnedGames { get; set; }
+        public ICollection<WishlistGame> WishlistGames { get; set; }
     }
 }

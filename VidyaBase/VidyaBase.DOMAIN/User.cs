@@ -15,6 +15,7 @@ namespace VidyaBase.DOMAIN
         //Gebruiker kan meerdere lijsten hebben
         public ICollection<Wishlist> Wishlists { get; set; }
         public ICollection<Achievement> Achievements { get; set; }
+        public ICollection<UserAchievement> UserAchievements { get; set; }
         public ICollection<Collection> Collections { get; set; }
     }
 }

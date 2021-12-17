@@ -8,5 +8,7 @@ namespace VidyaBase.DOMAIN
     {
         public int ID { get; set; }
         public string Name { get; set; }
+
+        public ICollection<UserAchievement> UserAchievements { get; set; }
     }
 }

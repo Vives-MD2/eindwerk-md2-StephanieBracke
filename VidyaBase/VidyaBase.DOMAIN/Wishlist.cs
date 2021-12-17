@@ -10,5 +10,7 @@ namespace VidyaBase.DOMAIN
         public string Name { get; set; }
         public int UserID { get; set; }
         public string Note { get; set; }
+
+        public ICollection<WishlistGame> WishlistGames { get; set; }
     }
 }

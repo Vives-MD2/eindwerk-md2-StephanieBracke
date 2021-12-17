@@ -36,16 +36,44 @@ namespace VidyaBase.DAL
             #endregion
 
             #region PRIMARY KEYS
+
+            modelBuilder.Entity<Collection>()
+                .HasKey(c => c.ID);
             modelBuilder.Entity<User>()
-                    .HasKey(x => x.ID);
+                .HasKey(u => u.ID);
+            modelBuilder.Entity<Achievement>()
+                .HasKey(a => a.ID);
+            modelBuilder.Entity<OwnedGame>()
+                .HasKey(og => og.ID);
+            modelBuilder.Entity<Wishlist>()
+                .HasKey(w => w.ID);
             modelBuilder.Entity<Game>()
-                    .HasKey(x => x.ID);
+                .HasKey(g => g.ID);
+            modelBuilder.Entity<Publisher>()
+                .HasKey(p => p.ID);
+            modelBuilder.Entity<Category>()
+                .HasKey(c => c.ID);
+
             #endregion
 
             #region UNIQUE KEYS
+
             modelBuilder.Entity<User>()
-                    .HasIndex(x => x.Email)
+                    .HasIndex(u => u.Email)
                     .IsUnique();
+            modelBuilder.Entity<Achievement>()
+                .HasIndex(a => a.Name)
+                .IsUnique();
+            modelBuilder.Entity<Game>()
+                .HasIndex(g => g.EAN)
+                .IsUnique();
+            modelBuilder.Entity<Publisher>()
+                .HasIndex(p => p.Name)
+                .IsUnique();
+            modelBuilder.Entity<Category>()
+                .HasIndex(c => c.Name)
+                .IsUnique();
+
             #endregion
 
             #region User
@@ -64,22 +92,14 @@ namespace VidyaBase.DAL
                     .IsRequired();
             #endregion
 
-            #region Game
-            modelBuilder.Entity<Game>()
-                    .Property(x => x.Title)
-                    .IsRequired()
-                    .HasMaxLength(75);
-            //definitely needs to be double checked
-            modelBuilder.Entity<Game>()
-                    .Property(x => x.EAN)
-                    .IsRequired();
-            #endregion
+            #region Collection
 
-            #region Achievements
-            modelBuilder.Entity<Achievement>()
-                    .Property(x => x.Name)
-                    .IsRequired()
-                    .HasMaxLength(75);
+            modelBuilder.Entity<Collection>()
+                .Property(c => c.Name)
+                .IsRequired();
+            modelBuilder.Entity<Collection>()
+                .HasKey(x => x.UserID);
+
             #endregion
 
             #region Collections
@@ -89,27 +109,87 @@ namespace VidyaBase.DAL
                     .HasMaxLength(75);
             #endregion
 
-            #region Wishlists
-            modelBuilder.Entity<Wishlist>()
+            #region Achievement
+            modelBuilder.Entity<Achievement>()
                     .Property(x => x.Name)
                     .IsRequired()
                     .HasMaxLength(75);
             #endregion
 
-            #region MANY-TO-MANY
+            #region Wishlists
+            modelBuilder.Entity<Wishlist>()
+                    .Property(w => w.Name)
+                    .IsRequired()
+                    .HasMaxLength(75);
+            modelBuilder.Entity<Wishlist>()
+                .Property(w => w.Note)
+                .HasDefaultValue("Your hopes and dreams go here");
+            #endregion
+
+            #region Game
+            modelBuilder.Entity<Game>()
+                    .Property(x => x.Title)
+                    .IsRequired()
+                    .HasMaxLength(75);
+            modelBuilder.Entity<Game>()
+                    .Property(x => x.EAN)
+                    .IsRequired();
+            #endregion
+
+
+
+            #region MANY TO MANY UserAchievement
+            
             modelBuilder.Entity<UserAchievement>()
-                    .HasKey(a => new { a.UserID, a.AchievementID });
+                    .HasKey(ua => new { ua.UserID, ua.AchievementID });
 
-            modelBuilder.Entity<WishlistGame>()
-                    .HasKey(w => new { w.GameID, w.WishlistID });
+            modelBuilder.Entity<UserAchievement>()
+                .HasOne(u => u.User)
+                .WithMany(l => l.UserAchievements)
+                .HasForeignKey(u => u.UserID);
 
-            modelBuilder.Entity<PublisherGame>()
-                    .HasKey(p => new { p.GameID, p.PublisherID });
-
-            modelBuilder.Entity<GameCategory>()
-                    .HasKey(g => new { g.GameID, g.CategoryID });
+            modelBuilder.Entity<UserAchievement>()
+                .HasOne(x => x.Achievement)
+                .WithMany(u => u.UserAchievements)
+                .HasForeignKey(l => l.AchievementID);
 
             #endregion
+
+            #region MANY TO MANY CollectionOwnedGame
+
+            modelBuilder.Entity<CollectionOwnedGame>()
+                    .HasKey(x => new { x.CollectionID, x.OwnedGamesID });
+
+            modelBuilder.Entity<CollectionOwnedGame>()
+                .HasOne(c => c.Collection)
+                .WithMany(x => x.OwnedGames)
+                .HasForeignKey(x => x.CollectionID);
+
+            modelBuilder.Entity<CollectionOwnedGame>()
+                .HasOne(x => x.OwnedGame)
+                .WithMany(x => x.OwnedGames)
+                .HasForeignKey(x => x.OwnedGamesID);
+
+            #endregion
+
+            #region WishlistGame
+
+            modelBuilder.Entity<WishlistGame>()
+                    .HasKey(x => new { x.WishlistID, x.GameID });
+
+            modelBuilder.Entity<WishlistGame>()
+                .HasOne(x => x.Wishlist)
+                .WithMany(x => x.WishlistGames)
+                .HasForeignKey(x => x.WishlistID);
+
+            modelBuilder.Entity<WishlistGame>()
+                .HasOne(x => x.Game)
+                .WithMany(x => x.WishlistGames)
+                .HasForeignKey(x => x.GameID);
+
+            #endregion
+
+
         }
     }
 }
