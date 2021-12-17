@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VidyaBase.UI.AppServices;
 using Xamarin.Forms;
 
 
@@ -16,17 +17,17 @@ namespace VidyaBase.UI
             InitializeComponent();
         }
 
-        private void btnCamera_Clicked(object sender, EventArgs e)
+        private async void btnCamera_Clicked(object sender, EventArgs e)
         {
             try
             {
-                //var qr_scanner = DependencyService.Get<IQRScannerService>();
-                //var result = await qr_scanner.SendAsync();
+                var qr_scanner = DependencyService.Get<IBarcodeScannerService>();
+                var result = await qr_scanner.SendAsync();
 
-                //if (result != null)
-                //{
-                //    eEAN.Text = result;
-                //}
+                if (result != null)
+                {
+                    eEAN.Text = result;
+                }
             }
             catch (Exception)
             {

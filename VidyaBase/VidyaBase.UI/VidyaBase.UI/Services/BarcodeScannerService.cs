@@ -15,8 +15,8 @@ namespace VidyaBase.UI.Services
 
             var scanner = new MobileBarcodeScanner()
             {
-                TopText = "Bip blop blap scanning initiated",
-                BottomText = "Even geduld!",
+                TopText = "Loading...",
+                BottomText = "Please hang on there!",
             };
 
             var scanResult = await scanner.Scan(optionsCustom);
