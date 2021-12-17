@@ -8,6 +8,6 @@ namespace VidyaBase.DOMAIN
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        public int EAN { get; set; }
+        public string EAN { get; set; }
     }
 }

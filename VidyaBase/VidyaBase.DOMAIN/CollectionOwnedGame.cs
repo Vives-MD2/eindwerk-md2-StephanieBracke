@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VidyaBase.DOMAIN
 {
-    public class UserGameCollection
+    public class CollectionOwnedGame
     {
         public int CollectionID { get; set; }
         public int OwnedGamesID{ get; set; }
