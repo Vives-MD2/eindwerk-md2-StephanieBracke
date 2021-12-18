@@ -6,6 +6,8 @@ namespace VidyaBase.DOMAIN
 {
     public class GameCategory
     {
+        public Game GameCat { get; set; }
+        public Category Category { get; set; }
         public int GameID { get; set; }
         public int CategoryID { get; set; }
     }

@@ -16,6 +16,10 @@ namespace VidyaBase.DOMAIN
         public ICollection<Wishlist> Wishlists { get; set; }
         public ICollection<Achievement> Achievements { get; set; }
         public ICollection<UserAchievement> UserAchievements { get; set; }
-        public ICollection<Collection> Collections { get; set; }
+
+        public ICollection<OwnedGame> OwnedGames { get; set; }
+        // gebruiker heeft 1 collection
+        public Collection Collection { get; set; }
+        //public int? CollectionID { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace VidyaBase.DAL
     class VidyaContext : DbContext
     {
         //<MoetNogIngevuldWorden>
-        public static string LocalConnectionString { get; set; } = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=<MoetNogIngevuldWorden>;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static string LocalConnectionString { get; set; } = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VidyaDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public static string OnlineConnectionString { get; set; } = @"";
 
         public VidyaContext()
@@ -90,23 +90,27 @@ namespace VidyaBase.DAL
                     .Property(x => x.DateOfBirth)
                     .HasColumnType("datetime")
                     .IsRequired();
+
+            //foreign key collection_User_UserID -> (one-to-one) one user has one collection
+            modelBuilder.Entity<User>()
+            .HasOne<Collection>(x => x.Collection)
+            .WithOne(x => x.User)
+            .HasForeignKey<Collection>(x => x.UserID);
             #endregion
 
             #region Collection
 
             modelBuilder.Entity<Collection>()
-                .Property(c => c.Name)
-                .IsRequired();
-            modelBuilder.Entity<Collection>()
-                .HasKey(x => x.UserID);
+                         .Property(x => x.Name)
+                         .IsRequired()
+                         .HasMaxLength(75);
+            ////Foreign key to User
+            //modelBuilder.Entity<Collection>()
+            //    .HasOne(x => x.User)
+            //    .WithOne(x => x.Collection)
+            //    .HasForeignKey<User>(x => x.CollectionID);
 
-            #endregion
 
-            #region Collections
-            modelBuilder.Entity<Collection>()
-                    .Property(x => x.Name)
-                    .IsRequired()
-                    .HasMaxLength(75);
             #endregion
 
             #region Achievement
@@ -139,7 +143,7 @@ namespace VidyaBase.DAL
 
 
             #region MANY TO MANY UserAchievement
-            
+
             modelBuilder.Entity<UserAchievement>()
                     .HasKey(ua => new { ua.UserID, ua.AchievementID });
 
@@ -167,7 +171,7 @@ namespace VidyaBase.DAL
 
             modelBuilder.Entity<CollectionOwnedGame>()
                 .HasOne(x => x.OwnedGame)
-                .WithMany(x => x.OwnedGames)
+                .WithMany(x => x.OwnedGamesCollection)
                 .HasForeignKey(x => x.OwnedGamesID);
 
             #endregion
@@ -188,6 +192,75 @@ namespace VidyaBase.DAL
                 .HasForeignKey(x => x.GameID);
 
             #endregion
+
+            #region GameCategory
+
+            modelBuilder.Entity<GameCategory>()
+                .HasKey(x => new { x.CategoryID, x.GameID });
+
+            modelBuilder.Entity<GameCategory>()
+                .HasOne(x => x.Category)
+                .WithMany(x => x.GameCategories)
+                .HasForeignKey(x => x.CategoryID);
+
+            modelBuilder.Entity<GameCategory>()
+                .HasOne(x => x.GameCat)
+                .WithMany(x => x.GameCategories)
+                .HasForeignKey(x => x.GameID);
+
+            #endregion
+
+            #region GamePublisher
+
+            modelBuilder.Entity<GamePublisher>()
+                .HasKey(x => new { x.PublisherID, x.GameID });
+
+            modelBuilder.Entity<GamePublisher>()
+                .HasOne(x => x.Publisher)
+                .WithMany(x => x.GamePublishers)
+                .HasForeignKey(x => x.PublisherID);
+
+            modelBuilder.Entity<GamePublisher>()
+                .HasOne(x => x.Game)
+                .WithMany(x => x.GamePublishers)
+                .HasForeignKey(x => x.GameID);
+
+            #endregion
+
+            //#region GamePublisher
+
+            //modelBuilder.Entity<GamePublisher>()
+            //    .HasKey(x => new { x.PublisherID, x.GameID });
+
+            //modelBuilder.Entity<GamePublisher>()
+            //    .HasOne(x => x.Publisher)
+            //    .WithMany(x => x.GamePublishers)
+            //    .HasForeignKey(x => x.PublisherID);
+
+            //modelBuilder.Entity<GamePublisher>()
+            //    .HasOne(x => x.Game)
+            //    .WithMany(x => x.GamePublishers)
+            //    .HasForeignKey(x => x.GameID);
+
+            //#endregion
+
+            #region MANY TO MANY OwnedGame
+
+            modelBuilder.Entity<OwnedGame>()
+                    .HasKey(x => new { x.UserID, x.GameID });
+
+            modelBuilder.Entity<OwnedGame>()
+                .HasOne(u => u.User)
+                .WithMany(x => x.OwnedGames)
+                .HasForeignKey(u => u.UserID);
+
+            modelBuilder.Entity<OwnedGame>()
+                .HasOne(x => x.Game)
+                .WithMany(x => x.OwnedGames)
+                .HasForeignKey(x => x.GameID);
+
+            #endregion
+
 
 
         }

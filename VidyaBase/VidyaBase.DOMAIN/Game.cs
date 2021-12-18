@@ -10,7 +10,10 @@ namespace VidyaBase.DOMAIN
         public string Title { get; set; }
         public string EAN { get; set; }
 
-        public ICollection<CollectionOwnedGame> OwnedGames { get; set; }
+        public ICollection<CollectionOwnedGame> OwnedGamesCollection { get; set; }
         public ICollection<WishlistGame> WishlistGames { get; set; }
+        public ICollection<GameCategory> GameCategories { get; set; }
+        public ICollection<GamePublisher> GamePublishers { get; set; }
+        public ICollection<OwnedGame> OwnedGames { get; set; }
     }
 }

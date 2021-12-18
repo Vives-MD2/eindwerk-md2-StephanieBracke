@@ -8,7 +8,9 @@ namespace VidyaBase.DOMAIN
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        // foreign key -> user
         public int UserID { get; set; }
+        public User User { get; set; }
 
         public ICollection<CollectionOwnedGame> OwnedGames { get; set; }
     }

@@ -10,8 +10,8 @@ using VidyaBase.DAL;
 namespace VidyaBase.DAL.Migrations
 {
     [DbContext(typeof(VidyaContext))]
-    [Migration("20211218191301_test")]
-    partial class test
+    [Migration("20211218223230_foreignkeys2")]
+    partial class foreignkeys2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,25 +67,23 @@ namespace VidyaBase.DAL.Migrations
 
             modelBuilder.Entity("VidyaBase.DOMAIN.Collection", b =>
                 {
-                    b.Property<int>("UserID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ID")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(75)")
                         .HasMaxLength(75);
 
-                    b.Property<int>("UserID1")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.HasKey("UserID");
+                    b.HasKey("ID");
 
-                    b.HasIndex("UserID1");
+                    b.HasIndex("UserID")
+                        .IsUnique();
 
                     b.ToTable("Collection");
                 });
@@ -129,20 +127,50 @@ namespace VidyaBase.DAL.Migrations
                     b.ToTable("Games");
                 });
 
-            modelBuilder.Entity("VidyaBase.DOMAIN.OwnedGame", b =>
+            modelBuilder.Entity("VidyaBase.DOMAIN.GameCategory", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
 
                     b.Property<int>("GameID")
                         .HasColumnType("int");
 
+                    b.HasKey("CategoryID", "GameID");
+
+                    b.HasIndex("GameID");
+
+                    b.ToTable("GameCategory");
+                });
+
+            modelBuilder.Entity("VidyaBase.DOMAIN.GamePublisher", b =>
+                {
+                    b.Property<int>("PublisherID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GameID")
+                        .HasColumnType("int");
+
+                    b.HasKey("PublisherID", "GameID");
+
+                    b.HasIndex("GameID");
+
+                    b.ToTable("GamePublisher");
+                });
+
+            modelBuilder.Entity("VidyaBase.DOMAIN.OwnedGame", b =>
+                {
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.Property<int>("GameID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserID", "GameID");
+
+                    b.HasIndex("GameID");
 
                     b.ToTable("OwnedGame");
                 });
@@ -264,9 +292,9 @@ namespace VidyaBase.DAL.Migrations
 
             modelBuilder.Entity("VidyaBase.DOMAIN.Collection", b =>
                 {
-                    b.HasOne("VidyaBase.DOMAIN.User", null)
-                        .WithMany("Collections")
-                        .HasForeignKey("UserID1")
+                    b.HasOne("VidyaBase.DOMAIN.User", "User")
+                        .WithOne("Collection")
+                        .HasForeignKey("VidyaBase.DOMAIN.Collection", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -280,8 +308,53 @@ namespace VidyaBase.DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("VidyaBase.DOMAIN.Game", "OwnedGame")
-                        .WithMany("OwnedGames")
+                        .WithMany("OwnedGamesCollection")
                         .HasForeignKey("OwnedGamesID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("VidyaBase.DOMAIN.GameCategory", b =>
+                {
+                    b.HasOne("VidyaBase.DOMAIN.Category", "Category")
+                        .WithMany("GameCategories")
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VidyaBase.DOMAIN.Game", "GameCat")
+                        .WithMany("GameCategories")
+                        .HasForeignKey("GameID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("VidyaBase.DOMAIN.GamePublisher", b =>
+                {
+                    b.HasOne("VidyaBase.DOMAIN.Game", "Game")
+                        .WithMany("GamePublishers")
+                        .HasForeignKey("GameID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VidyaBase.DOMAIN.Publisher", "Publisher")
+                        .WithMany("GamePublishers")
+                        .HasForeignKey("PublisherID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("VidyaBase.DOMAIN.OwnedGame", b =>
+                {
+                    b.HasOne("VidyaBase.DOMAIN.Game", "Game")
+                        .WithMany("OwnedGames")
+                        .HasForeignKey("GameID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VidyaBase.DOMAIN.User", "User")
+                        .WithMany("OwnedGames")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

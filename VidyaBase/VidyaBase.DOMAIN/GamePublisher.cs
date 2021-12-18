@@ -4,8 +4,10 @@ using System.Text;
 
 namespace VidyaBase.DOMAIN
 {
-    public class PublisherGame
+    public class GamePublisher
     {
+        public Game Game { get; set; }
+        public Publisher Publisher { get; set; }
         public int PublisherID { get; set; }
         public int GameID { get; set; }
     }
