@@ -19,7 +19,7 @@ namespace VidyaBase.DOMAIN
 
         public ICollection<OwnedGame> OwnedGames { get; set; }
         // gebruiker heeft 1 collection
-        public Collection Collection { get; set; }
+        public ICollection<Collection> Collections { get; set; }
         //public int? CollectionID { get; set; }
     }
 }

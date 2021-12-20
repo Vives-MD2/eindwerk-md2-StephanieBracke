@@ -6,9 +6,11 @@ namespace VidyaBase.DOMAIN
 {
     public class CollectionOwnedGame
     {
-        public Game OwnedGame { get; set; }
-        public Collection Collection { get; set; }
         public int CollectionID { get; set; }
-        public int OwnedGamesID{ get; set; }
+        public Collection Collection { get; set; }
+
+        public int OwnedGamesID { get; set; }
+        public OwnedGame OwnedGame { get; set; }
+
     }
 }

@@ -10,7 +10,7 @@ namespace VidyaBase.DAL
     {
         //<MoetNogIngevuldWorden>
         public static string LocalConnectionString { get; set; } = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VidyaDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        public static string OnlineConnectionString { get; set; } = @"";
+        public static string OnlineConnectionString { get; set; } = @"Data Source=SQL6012.site4now.net;Initial Catalog=db_a637bf_stephaniebracke;User Id=db_a637bf_stephaniebracke_admin;Password=xamarin5";
 
         public VidyaContext()
         {
@@ -59,8 +59,8 @@ namespace VidyaBase.DAL
             #region UNIQUE KEYS
 
             modelBuilder.Entity<User>()
-                    .HasIndex(u => u.Email)
-                    .IsUnique();
+                .HasIndex(u => u.Email)
+                .IsUnique();
             modelBuilder.Entity<Achievement>()
                 .HasIndex(a => a.Name)
                 .IsUnique();
@@ -79,65 +79,60 @@ namespace VidyaBase.DAL
             #region User
 
             modelBuilder.Entity<User>()
-                    .Property(x => x.FirstName)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                 .Property(x => x.FirstName)
+                 .IsRequired()
+                 .HasMaxLength(50);
             modelBuilder.Entity<User>()
-                    .Property(x => x.LastName)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                 .Property(x => x.LastName)
+                 .IsRequired()
+                 .HasMaxLength(50);
             modelBuilder.Entity<User>()
-                    .Property(x => x.DateOfBirth)
-                    .HasColumnType("datetime")
-                    .IsRequired();
+                 .Property(x => x.DateOfBirth)
+                 .HasColumnType("datetime")
+                 .IsRequired();
 
             //foreign key collection_User_UserID -> (one-to-one) one user has one collection
-            modelBuilder.Entity<User>()
-            .HasOne<Collection>(x => x.Collection)
-            .WithOne(x => x.User)
-            .HasForeignKey<Collection>(x => x.UserID);
+            modelBuilder.Entity<Collection>()
+                 .HasOne(x => x.User)
+                 .WithMany(x => x.Collections)
+                 .HasForeignKey(x => x.UserID);
+
             #endregion
 
             #region Collection
 
             modelBuilder.Entity<Collection>()
-                         .Property(x => x.Name)
-                         .IsRequired()
-                         .HasMaxLength(75);
-            ////Foreign key to User
-            //modelBuilder.Entity<Collection>()
-            //    .HasOne(x => x.User)
-            //    .WithOne(x => x.Collection)
-            //    .HasForeignKey<User>(x => x.CollectionID);
-
+                    .Property(x => x.Name)
+                    .IsRequired()
+                    .HasMaxLength(75);
 
             #endregion
 
             #region Achievement
             modelBuilder.Entity<Achievement>()
-                    .Property(x => x.Name)
-                    .IsRequired()
-                    .HasMaxLength(75);
+                 .Property(x => x.Name)
+                 .IsRequired()
+                 .HasMaxLength(75);
             #endregion
 
             #region Wishlists
             modelBuilder.Entity<Wishlist>()
-                    .Property(w => w.Name)
-                    .IsRequired()
-                    .HasMaxLength(75);
+                 .Property(x => x.Name)
+                 .IsRequired()
+                 .HasMaxLength(75);
             modelBuilder.Entity<Wishlist>()
-                .Property(w => w.Note)
+                .Property(x => x.Note)
                 .HasDefaultValue("Your hopes and dreams go here");
             #endregion
 
             #region Game
             modelBuilder.Entity<Game>()
-                    .Property(x => x.Title)
-                    .IsRequired()
-                    .HasMaxLength(75);
+                 .Property(x => x.Title)
+                 .IsRequired()
+                 .HasMaxLength(75);
             modelBuilder.Entity<Game>()
-                    .Property(x => x.EAN)
-                    .IsRequired();
+                 .Property(x => x.EAN)
+                 .IsRequired();
             #endregion
 
 
@@ -145,41 +140,66 @@ namespace VidyaBase.DAL
             #region MANY TO MANY UserAchievement
 
             modelBuilder.Entity<UserAchievement>()
-                    .HasKey(ua => new { ua.UserID, ua.AchievementID });
+                .HasKey(x => new { x.UserID, x.AchievementID });
 
             modelBuilder.Entity<UserAchievement>()
-                .HasOne(u => u.User)
-                .WithMany(l => l.UserAchievements)
-                .HasForeignKey(u => u.UserID);
+                .HasOne(x => x.User)
+                .WithMany(x => x.UserAchievements)
+                .HasForeignKey(x => x.UserID);
 
             modelBuilder.Entity<UserAchievement>()
                 .HasOne(x => x.Achievement)
-                .WithMany(u => u.UserAchievements)
-                .HasForeignKey(l => l.AchievementID);
+                .WithMany(x => x.UserAchievements)
+                .HasForeignKey(x => x.AchievementID);
+
+            #endregion
+
+            #region MANY TO MANY OwnedGame
+
+            //modelBuilder.Entity<OwnedGame>()
+            //    .HasKey(x => x.ID);
+
+            modelBuilder.Entity<OwnedGame>()
+                .Property(x => x.ID)
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn();
+
+            modelBuilder.Entity<OwnedGame>()
+                .HasOne(u => u.User)
+                .WithMany(x => x.OwnedGames)
+                .HasForeignKey(u => u.UserID);
+
+            modelBuilder.Entity<OwnedGame>()
+                .HasOne(x => x.Game)
+                .WithMany(x => x.OwnedGames)
+                .HasForeignKey(x => x.GameID);
 
             #endregion
 
             #region MANY TO MANY CollectionOwnedGame
 
             modelBuilder.Entity<CollectionOwnedGame>()
-                    .HasKey(x => new { x.CollectionID, x.OwnedGamesID });
+                .HasKey(x => new { x.CollectionID, x.OwnedGamesID });
 
             modelBuilder.Entity<CollectionOwnedGame>()
                 .HasOne(c => c.Collection)
-                .WithMany(x => x.OwnedGames)
-                .HasForeignKey(x => x.CollectionID);
+                .WithMany(x => x.CollectionOwnedGames)
+                .HasForeignKey(x => x.CollectionID)
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<CollectionOwnedGame>()
                 .HasOne(x => x.OwnedGame)
-                .WithMany(x => x.OwnedGamesCollection)
-                .HasForeignKey(x => x.OwnedGamesID);
+                .WithMany(x => x.CollectionOwnedGames)
+                .HasForeignKey(x => x.OwnedGamesID)
+                .OnDelete(DeleteBehavior.NoAction);
+
 
             #endregion
 
             #region WishlistGame
 
             modelBuilder.Entity<WishlistGame>()
-                    .HasKey(x => new { x.WishlistID, x.GameID });
+                .HasKey(x => new { x.WishlistID, x.GameID });
 
             modelBuilder.Entity<WishlistGame>()
                 .HasOne(x => x.Wishlist)
@@ -226,42 +246,6 @@ namespace VidyaBase.DAL
                 .HasForeignKey(x => x.GameID);
 
             #endregion
-
-            //#region GamePublisher
-
-            //modelBuilder.Entity<GamePublisher>()
-            //    .HasKey(x => new { x.PublisherID, x.GameID });
-
-            //modelBuilder.Entity<GamePublisher>()
-            //    .HasOne(x => x.Publisher)
-            //    .WithMany(x => x.GamePublishers)
-            //    .HasForeignKey(x => x.PublisherID);
-
-            //modelBuilder.Entity<GamePublisher>()
-            //    .HasOne(x => x.Game)
-            //    .WithMany(x => x.GamePublishers)
-            //    .HasForeignKey(x => x.GameID);
-
-            //#endregion
-
-            #region MANY TO MANY OwnedGame
-
-            modelBuilder.Entity<OwnedGame>()
-                    .HasKey(x => new { x.UserID, x.GameID });
-
-            modelBuilder.Entity<OwnedGame>()
-                .HasOne(u => u.User)
-                .WithMany(x => x.OwnedGames)
-                .HasForeignKey(u => u.UserID);
-
-            modelBuilder.Entity<OwnedGame>()
-                .HasOne(x => x.Game)
-                .WithMany(x => x.OwnedGames)
-                .HasForeignKey(x => x.GameID);
-
-            #endregion
-
-
 
         }
     }

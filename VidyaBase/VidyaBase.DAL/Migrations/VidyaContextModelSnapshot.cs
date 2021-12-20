@@ -80,8 +80,7 @@ namespace VidyaBase.DAL.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("UserID")
-                        .IsUnique();
+                    b.HasIndex("UserID");
 
                     b.ToTable("Collection");
                 });
@@ -94,7 +93,12 @@ namespace VidyaBase.DAL.Migrations
                     b.Property<int>("OwnedGamesID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("GameID")
+                        .HasColumnType("int");
+
                     b.HasKey("CollectionID", "OwnedGamesID");
+
+                    b.HasIndex("GameID");
 
                     b.HasIndex("OwnedGamesID");
 
@@ -157,18 +161,24 @@ namespace VidyaBase.DAL.Migrations
 
             modelBuilder.Entity("VidyaBase.DOMAIN.OwnedGame", b =>
                 {
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("GameID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ID")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.HasKey("UserID", "GameID");
+                    b.HasKey("ID");
 
                     b.HasIndex("GameID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("OwnedGame");
                 });
@@ -291,8 +301,8 @@ namespace VidyaBase.DAL.Migrations
             modelBuilder.Entity("VidyaBase.DOMAIN.Collection", b =>
                 {
                     b.HasOne("VidyaBase.DOMAIN.User", "User")
-                        .WithOne("Collection")
-                        .HasForeignKey("VidyaBase.DOMAIN.Collection", "UserID")
+                        .WithMany("Collections")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -300,15 +310,19 @@ namespace VidyaBase.DAL.Migrations
             modelBuilder.Entity("VidyaBase.DOMAIN.CollectionOwnedGame", b =>
                 {
                     b.HasOne("VidyaBase.DOMAIN.Collection", "Collection")
-                        .WithMany("OwnedGames")
+                        .WithMany("CollectionOwnedGames")
                         .HasForeignKey("CollectionID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("VidyaBase.DOMAIN.Game", "OwnedGame")
+                    b.HasOne("VidyaBase.DOMAIN.Game", null)
                         .WithMany("OwnedGamesCollection")
+                        .HasForeignKey("GameID");
+
+                    b.HasOne("VidyaBase.DOMAIN.OwnedGame", "OwnedGame")
+                        .WithMany("CollectionOwnedGames")
                         .HasForeignKey("OwnedGamesID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

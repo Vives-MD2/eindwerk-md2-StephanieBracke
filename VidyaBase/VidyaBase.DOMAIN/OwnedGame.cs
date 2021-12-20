@@ -11,5 +11,7 @@ namespace VidyaBase.DOMAIN
         public int ID { get; set; }
         public int UserID { get; set; }
         public int GameID { get; set; }
+
+        public ICollection<CollectionOwnedGame> CollectionOwnedGames { get; set; }
     }
 }

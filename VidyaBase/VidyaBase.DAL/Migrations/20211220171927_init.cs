@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VidyaBase.DAL.Migrations
 {
-    public partial class foreignkeys : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,8 +56,7 @@ namespace VidyaBase.DAL.Migrations
                     FirstName = table.Column<string>(maxLength: 50, nullable: false),
                     LastName = table.Column<string>(maxLength: 50, nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Email = table.Column<string>(nullable: true),
-                    CollectionID = table.Column<int>(nullable: true)
+                    Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -156,13 +155,14 @@ namespace VidyaBase.DAL.Migrations
                 name: "OwnedGame",
                 columns: table => new
                 {
-                    UserID = table.Column<int>(nullable: false),
-                    GameID = table.Column<int>(nullable: false),
                     ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<int>(nullable: false),
+                    GameID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OwnedGame", x => new { x.UserID, x.GameID });
+                    table.PrimaryKey("PK_OwnedGame", x => x.ID);
                     table.ForeignKey(
                         name: "FK_OwnedGame_Games_GameID",
                         column: x => x.GameID,
@@ -227,7 +227,8 @@ namespace VidyaBase.DAL.Migrations
                 columns: table => new
                 {
                     CollectionID = table.Column<int>(nullable: false),
-                    OwnedGamesID = table.Column<int>(nullable: false)
+                    OwnedGamesID = table.Column<int>(nullable: false),
+                    GameID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -236,14 +237,18 @@ namespace VidyaBase.DAL.Migrations
                         name: "FK_CollectionOwnedGame_Collection_CollectionID",
                         column: x => x.CollectionID,
                         principalTable: "Collection",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_CollectionOwnedGame_Games_OwnedGamesID",
-                        column: x => x.OwnedGamesID,
+                        name: "FK_CollectionOwnedGame_Games_GameID",
+                        column: x => x.GameID,
                         principalTable: "Games",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CollectionOwnedGame_OwnedGame_OwnedGamesID",
+                        column: x => x.OwnedGamesID,
+                        principalTable: "OwnedGame",
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -291,8 +296,12 @@ namespace VidyaBase.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Collection_UserID",
                 table: "Collection",
-                column: "UserID",
-                unique: true);
+                column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CollectionOwnedGame_GameID",
+                table: "CollectionOwnedGame",
+                column: "GameID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CollectionOwnedGame_OwnedGamesID",
@@ -319,6 +328,11 @@ namespace VidyaBase.DAL.Migrations
                 name: "IX_OwnedGame_GameID",
                 table: "OwnedGame",
                 column: "GameID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OwnedGame_UserID",
+                table: "OwnedGame",
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Publisher_Name",
@@ -362,9 +376,6 @@ namespace VidyaBase.DAL.Migrations
                 name: "GamePublisher");
 
             migrationBuilder.DropTable(
-                name: "OwnedGame");
-
-            migrationBuilder.DropTable(
                 name: "UserAchievement");
 
             migrationBuilder.DropTable(
@@ -372,6 +383,9 @@ namespace VidyaBase.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Collection");
+
+            migrationBuilder.DropTable(
+                name: "OwnedGame");
 
             migrationBuilder.DropTable(
                 name: "Category");
@@ -383,10 +397,10 @@ namespace VidyaBase.DAL.Migrations
                 name: "Achievement");
 
             migrationBuilder.DropTable(
-                name: "Games");
+                name: "Wishlist");
 
             migrationBuilder.DropTable(
-                name: "Wishlist");
+                name: "Games");
 
             migrationBuilder.DropTable(
                 name: "Users");
