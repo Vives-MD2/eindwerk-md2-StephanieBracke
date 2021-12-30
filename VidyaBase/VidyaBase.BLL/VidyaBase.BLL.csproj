@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VidyaBase.DAL\VidyaBase.DAL.csproj" />
+    <ProjectReference Include="..\VidyaBase.DOMAIN\VidyaBase.DOMAIN.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,45 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using VidyaBase.DOMAIN;
 using VidyaBase.DOMAIN.Contracts;
 
 namespace VidyaBase.DAL
 {
-    class GameDB : IGame
+    public class UserDB : IUser
     {
-        Task<Game> IGeneric<Game>.CreateAsync(Game entity)
+        private readonly VidyaContext _vidyaContext = new VidyaContext();
+        public async Task<User> CreateAsync(User entity)
         {
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable<Game>> IGeneric<Game>.CreateRangeAsync(List<Game> entities)
+        public async Task<IEnumerable<User>> CreateRangeAsync(List<User> entities)
         {
             throw new NotImplementedException();
         }
 
-        Task<Game> IGeneric<Game>.DeleteAsync(Game entity)
+        public async Task<User> DeleteAsync(User entity)
         {
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable<Game>> IGeneric<Game>.GetAsync(int skip, int take)
+        public async Task<IEnumerable<User>> GetAsync(int skip, int take)
         {
             throw new NotImplementedException();
         }
 
-        Task<Game> IGeneric<Game>.GetByIdAsync(int id)
+        public async Task<User> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        Task<int> IGeneric<Game>.GetTotalCountAsync()
+        public async Task<int> GetTotalCountAsync()
         {
             throw new NotImplementedException();
         }
 
-        Task<Game> IGeneric<Game>.UpdateAsync(Game entity)
+        public async Task<User> UpdateAsync(User entity)
         {
             throw new NotImplementedException();
         }

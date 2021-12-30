@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VidyaBase.DOMAIN
 {
-    public class Publisher
+    public class Publisher : GObject
     {
         public int ID { get; set; }
         public string Name { get; set; }

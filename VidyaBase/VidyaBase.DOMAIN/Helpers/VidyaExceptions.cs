@@ -4,21 +4,21 @@ using System.Text;
 
 namespace VidyaBase.DOMAIN
 {
-
-    public enum VidyaExceptions
+    s
+    public enum ExceptionTypes
     {
         Warning,
         Fatal,
     }
     public class VidyaException : Exception
     {
-        public VidyaExceptions EType { get; private set; } = VidyaExceptions.Fatal;
+        public ExceptionTypes EType { get; private set; } = ExceptionTypes.Fatal;
 
-        public VidyaException(string message, VidyaExceptions eType = VidyaExceptions.Fatal) : base(message)
+        public VidyaException(string message, ExceptionTypes eType = ExceptionTypes.Fatal) : base(message)
         {
 
         }
-        public VidyaException(string message, Exception inner, VidyaExceptions eType = VidyaExceptions.Fatal) : base(message, inner)
+        public VidyaException(string message, Exception inner, ExceptionTypes eType = ExceptionTypes.Fatal) : base(message, inner)
         {
 
         }

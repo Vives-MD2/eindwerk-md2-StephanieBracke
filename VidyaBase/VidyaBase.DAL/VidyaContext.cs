@@ -23,8 +23,19 @@ namespace VidyaBase.DAL
             //optionsBuilder.EnableSensitiveDataLogging(true);
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Achievement> Achievements { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Collection> Collections { get; set; }
+        public DbSet<CollectionOwnedGame> CollectionOwnedGames { get; set; }
         public DbSet<Game> Games { get; set; }
+        public DbSet<GameCategory> GameCategories { get; set; }
+        public DbSet<OwnedGame> OwnedGames { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<UserAchievement> UserAchievements { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
+        public DbSet<WishlistGame> WishlistGames { get; set; }
+        public DbSet<GamePublisher> GamePublishers { get; set; }
 
         //https://docs.microsoft.com/en-us/ef/core/modeling/generated-properties
         protected override void OnModelCreating(ModelBuilder modelBuilder)

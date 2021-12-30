@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\VidyaBase.BLL\VidyaBase.BLL.csproj" />
   </ItemGroup>
 
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VidyaBase.DOMAIN
 {
-    public class WishlistGame
+    public class WishlistGame : GObject
     {
         public Game Game { get; set; }
         public Wishlist Wishlist { get; set; }

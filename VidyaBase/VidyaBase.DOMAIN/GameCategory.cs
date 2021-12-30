@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VidyaBase.DOMAIN
 {
-    public class GameCategory
+    public class GameCategory : GObject
     {
         public Game GameCat { get; set; }
         public Category Category { get; set; }
