@@ -4,7 +4,6 @@ using System.Text;
 
 namespace VidyaBase.DOMAIN
 {
-    s
     public enum ExceptionTypes
     {
         Warning,

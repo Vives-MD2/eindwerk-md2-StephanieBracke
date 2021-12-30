@@ -34,7 +34,7 @@ namespace VidyaBase.BLL.Managers
 
         public async Task<GameCategory> GetByIdAsync(int gameID, int categoryID)
         {
-            return await _gameCategoryDB .GetByIdAsync(id);
+            return await _gameCategoryDB .GetByIdAsync(gameID, categoryID);
         }
 
         public async Task<GameCategory> GetByIdAsync(int id)

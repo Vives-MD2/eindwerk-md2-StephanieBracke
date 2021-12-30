@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using VidyaBase.UI.AppServices;
+using VidyaBase.UI.AppService.ScanService;
 using Xamarin.Forms;
 using ZXing.Mobile;
 
-[assembly: Dependency(typeof(VidyaBase.UI.Services.BarcodeScannerService))]
-namespace VidyaBase.UI.Services
+[assembly: Dependency(typeof(BarcodeScannerService))]
+namespace VidyaBase.UI.AppService.ScanService
 {
     class BarcodeScannerService : IBarcodeScannerService
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VidyaBase.UI.AppServices
+namespace VidyaBase.UI.AppService.ScanService
 {
     public interface IBarcodeScannerService
     {

@@ -15,4 +15,11 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="API\" />
+    <Folder Include="Views\Utils\" />
+    <Folder Include="Views\Root\" />
+    <Folder Include="Views\Project\" />
+  </ItemGroup>
 </Project>

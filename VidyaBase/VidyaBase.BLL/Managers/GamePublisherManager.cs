@@ -33,7 +33,7 @@ namespace VidyaBase.BLL.Managers
 
         public async Task<GamePublisher> GetByIdAsync(int gameID, int publisherID)
         {
-            return await _gamePublisherDB.GetByIdAsync(id);
+            return await _gamePublisherDB.GetByIdAsync(gameID, publisherID);
         }
 
         public Task<GamePublisher> GetByIdAsync(int id)

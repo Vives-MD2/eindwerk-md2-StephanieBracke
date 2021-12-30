@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VidyaBase.UI.AppServices;
+using VidyaBase.UI.AppService.ScanService;
 using Xamarin.Forms;
 
 
