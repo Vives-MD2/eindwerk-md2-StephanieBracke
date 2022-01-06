@@ -30,13 +30,13 @@ namespace VidyaBase.UI.ViewModels
 
         public async void OnEdit()
         {
-            //await Application.Current.MainPage.Navigation.PushModalAsync(new EditPage());
+            await Application.Current.MainPage.Navigation.PushModalAsync(new EditPage());
         }
 
         public async void OnList()
         {
             //Listpage
-            //await Application.Current.MainPage.Navigation.PushModalAsync(new EditPage());
+            //await Application.Current.MainPage.Navigation.PushModalAsync(new ListPage());
         }
     }
 }

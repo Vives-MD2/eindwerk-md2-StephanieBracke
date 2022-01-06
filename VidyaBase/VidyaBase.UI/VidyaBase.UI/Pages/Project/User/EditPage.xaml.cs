@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using VidyaBase.UI.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace VidyaBase.UI.Pages.Project.User
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentPage
+    public partial class EditPage : ContentPage
     {
-        public ProfilePage()
+        public EditPage()
         {
-            var viewModel = new ProfileViewModel();
+            var viewModel = new EditViewModel();
             BindingContext = viewModel;
             InitializeComponent();
         }
