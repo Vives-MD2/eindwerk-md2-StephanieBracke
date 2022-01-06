@@ -32,10 +32,14 @@ namespace VidyaBase.UI.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public ICommand SubmitCommand { protected set; get; }
+        public ICommand SignUpCommand { protected set; get; }
+
         public LoginViewModel()
         {
             SubmitCommand = new Command(OnSubmit);
+            SignUpCommand = new Command(OnSignUp);
         }
         public async void OnSubmit()
         {
@@ -44,6 +48,11 @@ namespace VidyaBase.UI.ViewModels
                 DisplayInvalidLoginPrompt();
             }
             await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
+        }
+
+        public async void OnSignUp()
+        {
+            await Application.Current.MainPage.Navigation.PushModalAsync(new SignUpPage());
         }
     }
 }

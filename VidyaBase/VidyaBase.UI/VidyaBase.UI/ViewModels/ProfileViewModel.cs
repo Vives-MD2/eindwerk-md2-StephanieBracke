@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using VidyaBase.UI.AppService.PageService;
 using VidyaBase.UI.Pages.Project.User;
 using VidyaBase.UI.Pages.Project.Vidya;
@@ -35,8 +32,7 @@ namespace VidyaBase.UI.ViewModels
 
         public async void OnList()
         {
-            //Listpage
-            //await Application.Current.MainPage.Navigation.PushModalAsync(new ListPage());
+            await Application.Current.MainPage.Navigation.PushModalAsync(new ListPage());
         }
     }
 }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace VidyaBase.UI.Pages.Project.Vidya
 {
-    public class AchievementsPageFlyoutMenuItem
+    public class ListPageFlyoutMenuItem
     {
-        public AchievementsPageFlyoutMenuItem()
+        public ListPageFlyoutMenuItem()
         {
-            TargetType = typeof(AchievementsPageFlyoutMenuItem);
+            TargetType = typeof(ListPageFlyoutMenuItem);
         }
         public int Id { get; set; }
         public string Title { get; set; }

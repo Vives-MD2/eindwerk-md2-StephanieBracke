@@ -13,31 +13,31 @@ using Xamarin.Forms.Xaml;
 namespace VidyaBase.UI.Pages.Project.Vidya
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AchievementsPageFlyout : ContentPage
+    public partial class ListPageFlyout : ContentPage
     {
         public ListView ListView;
 
-        public AchievementsPageFlyout()
+        public ListPageFlyout()
         {
             InitializeComponent();
 
-            BindingContext = new AchievementsPageFlyoutViewModel();
+            BindingContext = new ListPageFlyoutViewModel();
             ListView = MenuItemsListView;
         }
 
-        class AchievementsPageFlyoutViewModel : INotifyPropertyChanged
+        class ListPageFlyoutViewModel : INotifyPropertyChanged
         {
-            public ObservableCollection<AchievementsPageFlyoutMenuItem> MenuItems { get; set; }
+            public ObservableCollection<ListPageFlyoutMenuItem> MenuItems { get; set; }
 
-            public AchievementsPageFlyoutViewModel()
+            public ListPageFlyoutViewModel()
             {
-                MenuItems = new ObservableCollection<AchievementsPageFlyoutMenuItem>(new[]
+                MenuItems = new ObservableCollection<ListPageFlyoutMenuItem>(new[]
                 {
-                    new AchievementsPageFlyoutMenuItem { Id = 0, Title = "Page 1" },
-                    new AchievementsPageFlyoutMenuItem { Id = 1, Title = "Page 2" },
-                    new AchievementsPageFlyoutMenuItem { Id = 2, Title = "Page 3" },
-                    new AchievementsPageFlyoutMenuItem { Id = 3, Title = "Page 4" },
-                    new AchievementsPageFlyoutMenuItem { Id = 4, Title = "Page 5" },
+                    new ListPageFlyoutMenuItem { Id = 0, Title = "Page 1" },
+                    new ListPageFlyoutMenuItem { Id = 1, Title = "Page 2" },
+                    new ListPageFlyoutMenuItem { Id = 2, Title = "Page 3" },
+                    new ListPageFlyoutMenuItem { Id = 3, Title = "Page 4" },
+                    new ListPageFlyoutMenuItem { Id = 4, Title = "Page 5" },
                 });
             }
 
