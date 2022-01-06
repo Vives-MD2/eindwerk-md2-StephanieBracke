@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VidyaBase.UI.AppService.ScanService;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-
-namespace VidyaBase.UI
+namespace VidyaBase.UI.Pages.Project.Vidya
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ScanPage : ContentPage
     {
-        public MainPage()
+        public ScanPage()
         {
             InitializeComponent();
         }
-
-        private async void btnCameraScan_Clicked(object sender, EventArgs e)
+        private async void btnCamera_Clicked(object sender, EventArgs e)
         {
             try
             {

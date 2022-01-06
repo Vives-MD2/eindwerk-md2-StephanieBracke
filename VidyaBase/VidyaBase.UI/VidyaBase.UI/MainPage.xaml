@@ -6,7 +6,7 @@
     <StackLayout>
         <Button Text="Scan Barcode"  
                 x:Name="btnCamera"  
-                Clicked="btnCamera_Clicked"/>
+                Clicked="btnCameraScan_Clicked"/>
         <Entry x:Name="eEAN" />
     </StackLayout>
 
