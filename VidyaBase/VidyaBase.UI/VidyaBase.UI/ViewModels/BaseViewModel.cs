@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace VidyaBase.UI.ViewModels
 {
-    class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -16,9 +16,7 @@ namespace VidyaBase.UI.ViewModels
         protected void SetValue<T>(ref T backingField, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingField, value))
-            {
                 return;
-            }
 
             backingField = value;
 

@@ -1,16 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<FlyoutPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VidyaBase.UI.Pages.Project.Vidya.ListPage"
-             xmlns:pages="clr-namespace:VidyaBase.UI.Pages.Project.Vidya">
-  <FlyoutPage.Flyout>
-    <pages:ListPageFlyout x:Name="FlyoutPage" />
-  </FlyoutPage.Flyout>
-  <FlyoutPage.Detail>
-    <NavigationPage>
-      <x:Arguments>
-        <pages:ListPageDetail />
-      </x:Arguments>
-    </NavigationPage>
-  </FlyoutPage.Detail>
-</FlyoutPage>
+            BackgroundImageSource="GeoLight.jpg">
+    <!--Pages can be added as references or inline-->
+    <ContentPage Title="Wishlists" />
+
+    <ContentPage Title="Collections" />
+  <ContentPage Title="Achievements" />
+</TabbedPage>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using VidyaBase.UI.API;
 using VidyaBase.UI.AppService.PageService;
 using VidyaBase.UI.Pages.Project.User;
 using Xamarin.Forms;
@@ -41,13 +42,38 @@ namespace VidyaBase.UI.ViewModels
             SubmitCommand = new Command(OnSubmit);
             SignUpCommand = new Command(OnSignUp);
         }
+
+
+        
         public async void OnSubmit()
         {
-            if (email != "stephanie.bracke@student.vives.be" || password != "secret")
+            using (APIService<IUserApi> service = new APIService<IUserApi>(GlobalVars.VidyaBaseApiLocal))
+            {
+                var response = await service.myService.GetByEmail(email);
+
+                if (response != null)
+                {
+                    await Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
+                }
+            }
+
+            if (email == null)
             {
                 DisplayInvalidLoginPrompt();
             }
-            await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
+            else
+            {
+                await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
+            }
+
+            //if (email != "stephanie.bracke@student.vives.be" || password != "secret")
+            //{
+            //    DisplayInvalidLoginPrompt();
+            //}
+            //else
+            //{
+            //    await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
+            //}
         }
 
         public async void OnSignUp()

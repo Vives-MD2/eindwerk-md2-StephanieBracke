@@ -1,12 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VidyaBase.UI.Pages.Project.User.EditPage">
+             x:Class="VidyaBase.UI.Pages.Project.User.EditPage"
+             xmlns:viewmodels="clr-namespace:VidyaBase.UI.ViewModels" 
+             x:DataType="viewmodels:EditViewModel"
+             
+             BackgroundImageSource="GeoLight.jpg">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Image Grid.Row="0" Source="ProfilePic.jpg" VerticalOptions="Start" />
+            <Entry Placeholder="New Email" Text="{Binding EditUser.Email}"></Entry>
+            <Entry Placeholder="Confirm Email" Text="{Binding EditUser.Email}"></Entry>
+            <Entry Placeholder="New Password" IsPassword="True"></Entry>
+            <Entry Placeholder="Confirm Password" IsPassword="True"></Entry>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Send notifications"></Label>
+                <Switch IsToggled="False"></Switch>
+            </StackLayout>
+            <Button Text="Edit Profile" Command="{Binding EditCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

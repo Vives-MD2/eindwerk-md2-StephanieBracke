@@ -1,32 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VidyaBase.UI.Pages.Project.User.SignUpPage">
-    <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" Padding="5">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:VidyaBase.UI.ViewModels" 
+             x:DataType="viewmodels:SignUpViewModel"
+             x:Class="VidyaBase.UI.Pages.Project.User.SignUpPage"
+             BackgroundImageSource="Geo.jpg">
+
+    <StackLayout VerticalOptions="CenterAndExpand" Padding="5">
+        <Frame CornerRadius="10" BackgroundColor="#D08AAF" Opacity="0.9" HasShadow="False">
             <StackLayout Orientation="Horizontal">
-                <Entry Placeholder="First Name"></Entry>
-                <Entry Placeholder="Last Name"></Entry>
+                <Entry Placeholder="First Name" Text="{Binding NewUser.FirstName}" PlaceholderColor="#404040"></Entry>
+                <Entry Placeholder="Last Name" Text="{Binding NewUser.LastName}" PlaceholderColor="#404040"></Entry>
             </StackLayout>
-            <Entry Placeholder="Email"></Entry>
-            <Entry Placeholder="Password" IsPassword="True"></Entry>
-            <Entry Placeholder="Confirm Password" IsPassword="True"></Entry>
-            <Label Text="Date Of Birth"></Label>
-            <DatePicker></DatePicker>
-            <Label Text="Address"></Label>
-            <Editor></Editor>
+        </Frame>
+        <Frame CornerRadius="40" BackgroundColor="#D08AAF" Opacity="0.95" HasShadow="False">
+            <StackLayout>
+                <Entry Placeholder="Email" Text="{Binding NewUser.Email}"></Entry>
+                <Entry Placeholder="Password" IsPassword="True"></Entry>
+                <Entry Placeholder="Confirm Password" IsPassword="True"></Entry>
+                <Label Text="Date Of Birth"></Label>
+                <DatePicker Date="{Binding NewUser.DateOfBirth}" Format="dd MMM yyyy"></DatePicker>
+            </StackLayout>
+        </Frame>
+        <Frame CornerRadius="10" BackgroundColor="#D08AAF" Opacity="0.9" HasShadow="False">
             <StackLayout Orientation="Horizontal">
-                <Label Text="Save Password"></Label>
+                <Label Text="Save Password" TextColor="#403840"></Label>
                 <Switch IsToggled="False"></Switch>
             </StackLayout>
-            <Button Text="Sign Up"></Button>
-            <Label Text="Already have account? Sign In" TextColor="Blue">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding SignInCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
-        </StackLayout>
-    </ContentPage.Content>
+        </Frame>
+        <Button CornerRadius="10" Text="Sign Up" BackgroundColor="#D08AAF" Opacity="0.9" Command="{Binding SignUpCommand}"></Button>
+        <Label Text="Already have account? Sign In" TextColor="CornflowerBlue">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding SignInCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+        
 </ContentPage>
     
     

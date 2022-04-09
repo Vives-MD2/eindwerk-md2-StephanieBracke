@@ -15,11 +15,16 @@ namespace VidyaBase.BLL
 
         public async Task<User> CreateAsync(User entity)
         {
+            Console.WriteLine("Creating {0} in manager", entity.Email);
             if (!IsValidEmail(entity.Email))
             {
                 entity.Vex = new VidyaException("Invalid Email", ExceptionTypes.Warning);
+
+                Console.WriteLine("email not valid");
+
                 return entity;
             }
+
             return await _userDB.CreateAsync(entity);
         }
 
@@ -49,6 +54,16 @@ namespace VidyaBase.BLL
             return user ?? new User() { Vex = new VidyaException("No User Found!", ExceptionTypes.Warning) };
         }
 
+        public async Task<User> GetByEmailAsync(string email)
+        {
+            if (email != string.Empty)
+                return new User() { Vex = new VidyaException("Email invalid", ExceptionTypes.Warning) };
+
+            User user = await _userDB.GetByEmailAsync(email);
+            return user ?? new User() { Vex = new VidyaException("No User Found!", ExceptionTypes.Warning) };
+        }
+
+
         public async Task<int> GetTotalCountAsync()
         {
             return await _userDB.GetTotalCountAsync();
@@ -61,7 +76,6 @@ namespace VidyaBase.BLL
                 entity.Vex = new VidyaException("Invalid Email", ExceptionTypes.Warning);
                 return entity;
             }
-
             return await _userDB.UpdateAsync(entity);
         }
 

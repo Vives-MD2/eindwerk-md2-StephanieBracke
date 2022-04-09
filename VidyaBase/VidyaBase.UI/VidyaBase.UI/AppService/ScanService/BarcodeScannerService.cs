@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using VidyaBase.UI.AppService.ScanService;
 using Xamarin.Forms;
 using ZXing.Mobile;
@@ -18,8 +19,7 @@ namespace VidyaBase.UI.AppService.ScanService
                 TopText = "Loading...",
                 BottomText = "Please hang on there!",
             };
-
-            var scanResult = await scanner.Scan(optionsCustom);
+            var scanResult = await scanner.Scan(optionsCustom);            
             return scanResult.Text;
         }
     }

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VidyaBase.BLL\VidyaBase.BLL.csproj" />
+    <ProjectReference Include="..\VidyaBase.UI\VidyaBase.UI\VidyaBase.UI.csproj" />
   </ItemGroup>
 
 
