@@ -8,9 +8,9 @@ namespace VidyaBase.UI.HelperModels
         // fill in variables on creation for testing
 
         public int ID { get; set; }
-        public string FirstName { get; set; } = "tesgfgt2";
-        public string LastName { get; set; } = "alsofgfg test";
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; } = DateTime.Now;
-        public string Email { get; set; } = "fudfdfdck@this.shit";
+        public string Email { get; set; }
     }
 }

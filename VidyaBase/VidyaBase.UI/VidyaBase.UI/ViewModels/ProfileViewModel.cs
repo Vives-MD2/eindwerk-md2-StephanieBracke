@@ -1,10 +1,13 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using VidyaBase.UI.AppService.PageService;
 using VidyaBase.UI.HelperModels;
 using VidyaBase.UI.Pages.Project.User;
 using VidyaBase.UI.Pages.Project.Vidya;
 using Xamarin.Forms;
+using Xamarin.Essentials;
+using System;
 
 namespace VidyaBase.UI.ViewModels
 {
@@ -16,6 +19,7 @@ namespace VidyaBase.UI.ViewModels
         public ICommand ScanCommand { protected set; get; }
         public ICommand EditCommand { protected set; get; }
         public ICommand ListCommand { protected set; get; }
+        public ICommand ShowCurrentUserCommand { protected set; get; }
 
         public UserHelper CurrentUser
         {
@@ -32,15 +36,27 @@ namespace VidyaBase.UI.ViewModels
             ScanCommand = new Command(OnScan);
             EditCommand = new Command(OnEdit);
             ListCommand = new Command(OnList);
+
+            ShowCurrentUserCommand = new Command(async x => await ShowCurrentUser());
         }
 
         public ProfileViewModel(UserHelper user)
         {
-            _currentUser = user;
+            
+            var testTrut = new UserHelper
+            {
+                FirstName = "Test",
+                LastName = "Trut",
+                Email = "test@test"
+            };
+
+            CurrentUser = testTrut;
 
             ScanCommand = new Command(OnScan);
             EditCommand = new Command(OnEdit);
             ListCommand = new Command(OnList);
+
+            ShowCurrentUserCommand = new Command(async x => await ShowCurrentUser());
         }
 
         public async void OnScan()
@@ -56,6 +72,23 @@ namespace VidyaBase.UI.ViewModels
         public async void OnList()
         {
             await Application.Current.MainPage.Navigation.PushModalAsync(new ListPage());
+        }
+        public async Task ShowCurrentUser()
+        {
+            //using stuff met api, hier current user opvragen
+
+            //CurrentUser = await SecureStorage.GetAsync("CurrentUser");
+
+
+
+            var test = new UserHelper
+            {
+                FirstName = await SecureStorage.GetAsync("UserFirstName"),
+                LastName = await SecureStorage.GetAsync("UserLastName"),
+                Email = await SecureStorage.GetAsync("UserEmail"),
+                DateOfBirth = DateTime.Parse(await SecureStorage.GetAsync("DateOfBirth"))
+                };
+            CurrentUser = test;
         }
     }
 }

@@ -56,7 +56,7 @@ namespace VidyaBase.BLL
 
         public async Task<User> GetByEmailAsync(string email)
         {
-            if (email != string.Empty)
+            if (email == string.Empty)
                 return new User() { Vex = new VidyaException("Email invalid", ExceptionTypes.Warning) };
 
             User user = await _userDB.GetByEmailAsync(email);

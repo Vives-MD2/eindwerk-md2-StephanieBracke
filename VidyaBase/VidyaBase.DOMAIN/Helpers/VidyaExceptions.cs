@@ -12,6 +12,10 @@ namespace VidyaBase.DOMAIN
     public class VidyaException : Exception
     {
         public ExceptionTypes EType { get; private set; } = ExceptionTypes.Fatal;
+        public VidyaException()
+        {
+
+        }
 
         public VidyaException(string message, ExceptionTypes eType = ExceptionTypes.Fatal) : base(message)
         {

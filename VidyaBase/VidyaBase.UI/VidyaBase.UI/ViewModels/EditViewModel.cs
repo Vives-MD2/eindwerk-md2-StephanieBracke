@@ -25,6 +25,10 @@ namespace VidyaBase.UI.ViewModels
         }
 
         public ICommand EditCommand {protected set; get;}
+        public EditViewModel()
+        {
+            EditCommand = new Command(async x => await OnEdit());
+        }
         public EditViewModel(UserHelper user)
         {
             EditCommand = new Command(async x => await OnEdit());

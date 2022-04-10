@@ -4,12 +4,19 @@ using VidyaBase.UI.API;
 using VidyaBase.UI.AppService.PageService;
 using VidyaBase.UI.Pages.Project.User;
 using Xamarin.Forms;
+using Xamarin.Essentials;
+using Newtonsoft.Json;
+using VidyaBase.UI.HelperModels;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using VidyaBase.DOMAIN;
 
 namespace VidyaBase.UI.ViewModels
 {
     class LoginViewModel : BaseViewModel
     {
         private PageService pageService = new PageService();
+        private JsonSerializer _serializer = new JsonSerializer();
 
         // Based on C-Sharpcorner
         public Action DisplayInvalidLoginPrompt;
@@ -33,38 +40,58 @@ namespace VidyaBase.UI.ViewModels
                 OnPropertyChanged();
             }
         }
+        private UserHelper _loggedInUser;
+        public UserHelper LoggedInUser
+        {
+            get { return _loggedInUser; }
+            //set => SetValue(ref _loggedInUser, value);
+            set
+            {
+                _loggedInUser = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand SubmitCommand { protected set; get; }
         public ICommand SignUpCommand { protected set; get; }
 
         public LoginViewModel()
         {
-            SubmitCommand = new Command(OnSubmit);
+            SubmitCommand = new Command(async x => await OnSubmit());
             SignUpCommand = new Command(OnSignUp);
         }
-
-
         
-        public async void OnSubmit()
+        public async Task OnSubmit()
         {
+            //To store the logged in user: https://gabsikarim.gitbook.io/xamarin/code/topics/secure-storage
             using (APIService<IUserApi> service = new APIService<IUserApi>(GlobalVars.VidyaBaseApiLocal))
             {
-                var response = await service.myService.GetByEmail(email);
-
-                if (response != null)
+                if (email != string.Empty)
                 {
-                    await Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
+                   var response = await service.myService.GetByEmail(email);
+                   var user = JsonConvert.DeserializeObject<ApiSingleResponse<User>>(response).Value;
+
+                   await SecureStorage.SetAsync("UserLastName", user.LastName);
+                   await SecureStorage.SetAsync("UserFirstName", user.FirstName);
+                   await SecureStorage.SetAsync("UserEmail", user.Email);
+                   await SecureStorage.SetAsync("DateOfBirth", user.DateOfBirth.ToString());
+                   Debug.WriteLine(LoggedInUser);
+                   await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
+                }
+                else
+                {
+                    DisplayInvalidLoginPrompt();
                 }
             }
 
-            if (email == null)
-            {
-                DisplayInvalidLoginPrompt();
-            }
-            else
-            {
-                await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
-            }
+            //if (Email == string.Empty)
+            //{
+
+            //}
+            //else
+            //{
+            //    await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
+            //}
 
             //if (email != "stephanie.bracke@student.vives.be" || password != "secret")
             //{

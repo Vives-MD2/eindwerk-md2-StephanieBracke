@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:VidyaBase.UI.ViewModels" x:DataType="viewmodels:LoginViewModel"
              x:Class="VidyaBase.UI.Pages.Project.User.LoginPage"
              BackgroundImage="neon.jpg">
     <ContentPage.Content>
@@ -18,7 +19,6 @@
                            PlaceholderColor="White" HeightRequest="40"   
                            IsPassword="True"  
                            TextColor="White"/>
-                    
                 </StackLayout>
             </Frame>
             <Image HorizontalOptions="Center"  WidthRequest="300" Source="neonvr.jpg"/>
