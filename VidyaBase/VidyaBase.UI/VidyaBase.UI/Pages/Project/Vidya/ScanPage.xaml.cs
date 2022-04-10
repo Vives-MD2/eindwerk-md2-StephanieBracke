@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using VidyaBase.UI.AppService.ScanService;
@@ -33,11 +35,29 @@ namespace VidyaBase.UI.Pages.Project.Vidya
                 else
                 {
                     eEAN.Text = result;
+                    await UseEanApi(result);
                 }
             }
             catch (Exception)
             {
                 await DisplayAlert("Error", "No EAN was scanned", "OK");
+            }
+        }
+        private async Task UseEanApi(string barcode)
+        {
+            var httpClient = new HttpClient();
+
+            Uri uri = new Uri($"https://api.ean-search.org/api?token=1938aa76f22a300d0743041a82f12a38c234bd68f1ccfbe4d0da94e094d72be3&op=barcode-lookup&ean={barcode}&format=json");
+            HttpResponseMessage response = await httpClient.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine(body);
+                //deserializen adhv EanModel
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Something went wrong...", $"Response:{response.StatusCode}", "ok");
             }
         }
     }

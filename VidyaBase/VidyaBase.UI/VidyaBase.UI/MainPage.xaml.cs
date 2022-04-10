@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using VidyaBase.UI.AppService.ScanService;
@@ -16,7 +18,7 @@ namespace VidyaBase.UI
         {
             InitializeComponent();
         }
-
+        
         private async void btnCameraScan_Clicked(object sender, EventArgs e)
         {
             try
@@ -27,7 +29,9 @@ namespace VidyaBase.UI
                 if (result != null)
                 {
                     eEAN.Text = result;
+                   
                 }
+                
             }
             catch (Exception)
             {
