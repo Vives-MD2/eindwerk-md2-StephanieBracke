@@ -20,7 +20,7 @@ namespace VidyaBase.UI.ViewModels
     {
         private PageService pageService = new PageService();
         public ICommand ScanEanCodeCommand { protected set; get; }
-        public ICommand CollectionGoCommand { protected get; set; }
+        public ICommand CollectionGoCommand { protected set; get; }
         public ICommand WishlistGoCommand { protected set; get; }
 
         private string _test;
