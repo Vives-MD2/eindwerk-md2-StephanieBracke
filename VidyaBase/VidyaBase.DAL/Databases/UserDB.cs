@@ -44,8 +44,8 @@ namespace VidyaBase.DAL
         public async Task<User> GetByIdAsync(int id)
         {
             return await _vidyaContext.Users.AsNoTracking()
-            .Include(x => x.Wishlists)
-            .Include(x => x.Collections)
+            //.Include(x => x.Wishlists)
+            //.Include(x => x.Collections)
             .SingleOrDefaultAsync(x => x.ID == id);
         }
         public async Task<User> GetByEmailAsync(string email)

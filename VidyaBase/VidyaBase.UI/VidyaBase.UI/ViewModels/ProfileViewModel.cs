@@ -8,20 +8,23 @@ using VidyaBase.UI.Pages.Project.Vidya;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using System;
+using VidyaBase.UI.API;
+using Newtonsoft.Json;
+using VidyaBase.DOMAIN;
 
 namespace VidyaBase.UI.ViewModels
 {
     class ProfileViewModel : BaseViewModel
     {
         private PageService pageService = new PageService();
-        private UserHelper _currentUser = new UserHelper();
+        private User _currentUser = new User();
 
         public ICommand ScanCommand { protected set; get; }
         public ICommand EditCommand { protected set; get; }
         public ICommand ListCommand { protected set; get; }
         public ICommand ShowCurrentUserCommand { protected set; get; }
 
-        public UserHelper CurrentUser
+        public User CurrentUser
         {
             get
             {
@@ -40,17 +43,8 @@ namespace VidyaBase.UI.ViewModels
             ShowCurrentUserCommand = new Command(async x => await ShowCurrentUser());
         }
 
-        public ProfileViewModel(UserHelper user)
+        public ProfileViewModel(User user)
         {
-            
-            var testTrut = new UserHelper
-            {
-                FirstName = "Test",
-                LastName = "Trut",
-                Email = "test@test"
-            };
-
-            CurrentUser = testTrut;
 
             ScanCommand = new Command(OnScan);
             EditCommand = new Command(OnEdit);
@@ -77,18 +71,17 @@ namespace VidyaBase.UI.ViewModels
         {
             //using stuff met api, hier current user opvragen
 
-            //CurrentUser = await SecureStorage.GetAsync("CurrentUser");
+            int currentUserId = Convert.ToInt32(await SecureStorage.GetAsync("idLoggedInUser"));
 
-
-
-            var test = new UserHelper
+            using (APIService<IUserApi> service = new APIService<IUserApi>(GlobalVars.VidyaBaseApiLocal))
             {
-                FirstName = await SecureStorage.GetAsync("UserFirstName"),
-                LastName = await SecureStorage.GetAsync("UserLastName"),
-                Email = await SecureStorage.GetAsync("UserEmail"),
-                DateOfBirth = DateTime.Parse(await SecureStorage.GetAsync("DateOfBirth"))
-                };
-            CurrentUser = test;
+                if (currentUserId > 0)
+                {
+                    var response = await service.myService.GetById(currentUserId);
+                    var user = JsonConvert.DeserializeObject<ApiSingleResponse<User>>(response).Value;
+                    CurrentUser = user;
+                }
+            }
         }
     }
 }

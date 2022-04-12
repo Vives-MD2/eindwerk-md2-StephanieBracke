@@ -71,10 +71,10 @@ namespace VidyaBase.UI.ViewModels
                    var response = await service.myService.GetByEmail(email);
                    var user = JsonConvert.DeserializeObject<ApiSingleResponse<User>>(response).Value;
 
-                   await SecureStorage.SetAsync("UserLastName", user.LastName);
-                   await SecureStorage.SetAsync("UserFirstName", user.FirstName);
-                   await SecureStorage.SetAsync("UserEmail", user.Email);
-                   await SecureStorage.SetAsync("DateOfBirth", user.DateOfBirth.ToString());
+                    await SecureStorage.SetAsync("idLoggedInUser", user.ID.ToString());
+                   //await SecureStorage.SetAsync("UserFirstName", user.FirstName);
+                   //await SecureStorage.SetAsync("UserEmail", user.Email);
+                   //await SecureStorage.SetAsync("DateOfBirth", user.DateOfBirth.ToString());
                    Debug.WriteLine(LoggedInUser);
                    await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
                 }
