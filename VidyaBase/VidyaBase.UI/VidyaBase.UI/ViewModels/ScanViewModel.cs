@@ -11,6 +11,7 @@ using Utf8Json;
 using VidyaBase.UI.AppService.PageService;
 using VidyaBase.UI.AppService.ScanService;
 using VidyaBase.UI.HelperModels;
+using VidyaBase.UI.Pages.Project.Vidya;
 using Xamarin.Forms;
 
 namespace VidyaBase.UI.ViewModels
@@ -19,6 +20,8 @@ namespace VidyaBase.UI.ViewModels
     {
         private PageService pageService = new PageService();
         public ICommand ScanEanCodeCommand { protected set; get; }
+        public ICommand CollectionGoCommand { protected get; set; }
+        public ICommand WishlistGoCommand { protected set; get; }
 
         private string _test;
 
@@ -52,6 +55,18 @@ namespace VidyaBase.UI.ViewModels
         public ScanViewModel()
         {
             ScanEanCodeCommand = new Command(async x => await ScanEanCode());
+            WishlistGoCommand = new Command(OnWishlistGoCommand);
+            CollectionGoCommand = new Command(OnCollectionGoCommand);
+        }
+
+        public async void OnWishlistGoCommand()
+        {
+            await Application.Current.MainPage.Navigation.PushModalAsync(new WishlistPage());
+        }
+
+        public async void OnCollectionGoCommand()
+        {
+            await Application.Current.MainPage.Navigation.PushModalAsync(new CollectionPage());
         }
 
         public async Task ScanEanCode()

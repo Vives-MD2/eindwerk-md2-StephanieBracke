@@ -10,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace VidyaBase.UI.Pages.Project.Vidya
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListPage : TabbedPage
+    public partial class CollectionPage : ContentPage
     {
-        public ListPage()
+        public CollectionPage()
         {
-            var viewModel = new WishlistViewModel();
+            var viewModel = new CollectionViewModel();
             BindingContext = viewModel;
             InitializeComponent();
         }

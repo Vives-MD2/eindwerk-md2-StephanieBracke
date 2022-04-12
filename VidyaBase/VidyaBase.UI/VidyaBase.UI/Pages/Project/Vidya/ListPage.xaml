@@ -2,10 +2,16 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VidyaBase.UI.Pages.Project.Vidya.ListPage"
-            BackgroundImageSource="GeoLight.jpg">
-    <!--Pages can be added as references or inline-->
-    <ContentPage Title="Wishlists" />
+             xmlns:local="clr-namespace:VidyaBase.UI.Pages.Project.Vidya"
+            NavigationPage.HasNavigationBar="False"
+            BarBackground="violet"
+            SelectedTabColor="Green"
+            UnselectedTabColor="Aquamarine">
+    <local:WishlistPage Title="Wishlist"/>
+    <local:CollectionPage Title="Collection"/>
 
-    <ContentPage Title="Collections" />
-  <ContentPage Title="Achievements" />
+
+    <!--<TabbedPage Title="Achievements"/>-->
+
+
 </TabbedPage>

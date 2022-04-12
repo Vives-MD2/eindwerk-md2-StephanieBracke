@@ -11,6 +11,5 @@ namespace VidyaBase.UI.HelperModels
         public string categoryId { get; set; }
         public string categoryName { get; set; }
         public string issuingCountry { get; set; }
-
     }
 }

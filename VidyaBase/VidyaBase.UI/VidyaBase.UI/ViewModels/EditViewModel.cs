@@ -38,7 +38,6 @@ namespace VidyaBase.UI.ViewModels
         {
             await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
         }
-
     }
 }
 

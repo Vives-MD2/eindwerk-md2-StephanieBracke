@@ -10,8 +10,7 @@ namespace VidyaBase.UI
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ScanPage());
-
+            MainPage = new NavigationPage(new ProfilePage());
         }
 
         protected override void OnStart()
