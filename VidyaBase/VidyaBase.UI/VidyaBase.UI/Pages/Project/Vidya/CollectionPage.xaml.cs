@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VidyaBase.UI.ViewModels;
+﻿using VidyaBase.UI.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,8 +9,6 @@ namespace VidyaBase.UI.Pages.Project.Vidya
     {
         public CollectionPage()
         {
-            var viewModel = new CollectionViewModel();
-            BindingContext = viewModel;
             InitializeComponent();
         }
     }

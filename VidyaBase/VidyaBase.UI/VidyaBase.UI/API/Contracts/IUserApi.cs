@@ -1,6 +1,5 @@
 ﻿using Refit;
 using System.Threading.Tasks;
-using VidyaBase.DOMAIN;
 using VidyaBase.UI.HelperModels;
 
 namespace VidyaBase.UI.API
