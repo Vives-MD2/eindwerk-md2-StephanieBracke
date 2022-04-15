@@ -11,8 +11,8 @@
                     Command="{Binding ScanEanCodeCommand}"
                 x:Name="btnCamera"  
                 BackgroundColor="Violet"/>
-            <Entry Placeholder="EanCode" x:Name="eEAN" Text="{Binding ScannedEan}" />
-            <Entry Placeholder="Game Title" IsEnabled="False" Text="{Binding ScannedEan.name}"/>
+            <Entry Placeholder="Ean Code" x:Name="eEAN" Text="{Binding ScannedEan.Ean}" />
+            <Entry Placeholder="Game Title" IsEnabled="False" Text="{Binding ScannedEan.Name}"/>
         </StackLayout>
             <StackLayout Orientation="Horizontal" Margin="40,0,0,0"  Spacing="30">
                 <Button Text="Add to collection" Command="{Binding CollectionGoCommand}" BackgroundColor="Violet"/>

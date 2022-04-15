@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VidyaBase.DOMAIN", "VidyaBa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VidyaBase.MOCK", "VidyaBase.MOCK\VidyaBase.MOCK.csproj", "{F4B4C1D7-B6F3-4D03-88AA-4EBB65BF34C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VidyaBase.RestApi", "VidyaBase.RestApi\VidyaBase.RestApi.csproj", "{58382D7E-9238-443F-8601-158010904C85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VidyaBase.RestApi", "VidyaBase.RestApi\VidyaBase.RestApi.csproj", "{58382D7E-9238-443F-8601-158010904C85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

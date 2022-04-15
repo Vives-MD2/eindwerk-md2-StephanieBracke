@@ -28,7 +28,7 @@
             <Image Grid.Row="0" Source="ProfilePic.jpg" VerticalOptions="Start" />
             <!-- 2. Profile information-->
             <StackLayout Grid.Row="0" VerticalOptions="End">
-                <Frame CornerRadius="40" Style="{StaticResource Key=ProfileMainStyle}" BackgroundColor="#ffc9d1" Opacity="0.8">
+                <Frame CornerRadius="40" Style="{StaticResource Key=ProfileMainStyle}" BackgroundColor="#aec6cf" Opacity="0.8">
                     <Grid Padding="25,10,25,0" RowSpacing="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -39,24 +39,27 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding CurrentUser.FirstName}" FontAttributes="Bold" FontSize="30"/>
-                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding CurrentUser.LastName}" FontSize="16"/>
-                        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Padding="0,10,0,0" FontSize="16">
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CurrentUser.FirstName}" FontAttributes="Bold" FontSize="30" TextColor="#101010"/>
+                        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CurrentUser.LastName}" FontSize="16" TextColor="#181818"/>
+                        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CurrentUser.DateOfBirth, StringFormat='{0:dd/MMMM/yyyy}'}" TextColor="	#181818" FontSize="16"/>
+                        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Padding="0,10,0,0" FontSize="16">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="Email: " FontAttributes="Bold" />
-                                    <Span Text="{Binding CurrentUser.Email}"  />
+                                    <Span Text="Email: " FontAttributes="Bold" TextColor="#080808"/>
+                                    <Span Text="{Binding CurrentUser.Email}" TextColor="#181818" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
 
                         <!--4. User options: Scan & Lists-->
 
-                        <Button Command="{Binding ScanCommand}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" BackgroundColor="#1E90FF" Text="Scan" Margin="-10,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
-                        <Button Command="{Binding ListCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" BackgroundColor="#87CEFA" Text="Lists" Margin="-10,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
-                        <Button Command="{Binding EditCommand}" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1" BackgroundColor="#87CEFA" Text="Edit" Margin="-10,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
+                        <Button Command="{Binding ScanCommand}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" BackgroundColor="#4666FF" Text="Scan" Margin="0,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
+                        <Button Command="{Binding ListCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" BackgroundColor="#FFB4C1" Text="Lists" Margin="0,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
+                        <Button Command="{Binding EditCommand}" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1" BackgroundColor="#FFB4C1" Text="Edit" Margin="0,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
                     </Grid>
                 </Frame>
             </StackLayout>

@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VidyaBase.DOMAIN;
 using VidyaBase.DOMAIN.Contracts;
@@ -39,6 +37,12 @@ namespace VidyaBase.DAL.Databases
         public async Task<IEnumerable<OwnedGame>> GetAsync(int skip, int take)
         {
             return await _vidyaContext.OwnedGames.AsNoTracking().OrderBy(x => x.ID).Skip(skip).Take(take).ToListAsync();
+        }
+
+        public async Task<IEnumerable<OwnedGame>> GetByUserIdAsync(int userId, int skip, int take)
+        {
+            var list = await _vidyaContext.OwnedGames.AsNoTracking().Where(x => x.UserID == userId).OrderBy(x => x.ID).Skip(skip).Take(take).ToListAsync();
+            return list;
         }
 
         public async Task<OwnedGame> GetByIdAsync(int id)

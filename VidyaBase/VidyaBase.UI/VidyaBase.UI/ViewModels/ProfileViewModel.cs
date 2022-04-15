@@ -14,17 +14,17 @@ using VidyaBase.DOMAIN;
 
 namespace VidyaBase.UI.ViewModels
 {
-    class ProfileViewModel : BaseViewModel
+    public class ProfileViewModel : BaseViewModel
     {
-        private PageService pageService = new PageService();
-        private User _currentUser = new User();
+        private readonly PageService pageService = new PageService();
+        private UserHelper _currentUser = new UserHelper();
 
         public ICommand ScanCommand { protected set; get; }
         public ICommand EditCommand { protected set; get; }
         public ICommand ListCommand { protected set; get; }
         public ICommand ShowCurrentUserCommand { protected set; get; }
 
-        public User CurrentUser
+        public UserHelper CurrentUser
         {
             get
             {
@@ -43,16 +43,6 @@ namespace VidyaBase.UI.ViewModels
             ShowCurrentUserCommand = new Command(async x => await ShowCurrentUser());
         }
 
-        public ProfileViewModel(User user)
-        {
-
-            ScanCommand = new Command(OnScan);
-            EditCommand = new Command(OnEdit);
-            ListCommand = new Command(OnList);
-
-            ShowCurrentUserCommand = new Command(async x => await ShowCurrentUser());
-        }
-
         public async void OnScan()
         {
             await Application.Current.MainPage.Navigation.PushModalAsync(new ScanPage());
@@ -60,7 +50,7 @@ namespace VidyaBase.UI.ViewModels
 
         public async void OnEdit()
         {
-            await Application.Current.MainPage.Navigation.PushModalAsync(new EditPage());
+            await Application.Current.MainPage.Navigation.PushModalAsync(new EditPage(CurrentUser));
         }
 
         public async void OnList()
@@ -78,7 +68,7 @@ namespace VidyaBase.UI.ViewModels
                 if (currentUserId > 0)
                 {
                     var response = await service.myService.GetById(currentUserId);
-                    var user = JsonConvert.DeserializeObject<ApiSingleResponse<User>>(response).Value;
+                    var user = JsonConvert.DeserializeObject<ApiSingleResponse<UserHelper>>(response).Value;
                     CurrentUser = user;
                 }
             }

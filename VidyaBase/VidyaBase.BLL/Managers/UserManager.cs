@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using VidyaBase.DAL;
@@ -48,8 +47,6 @@ namespace VidyaBase.BLL
             if (id <= 0)
                 return new User() { Vex = new VidyaException("Id is lower than one", ExceptionTypes.Warning) };
 
-            //int nul = 0;
-            //int tst = 2 / nul;
             User user = await _userDB.GetByIdAsync(id);
             return user ?? new User() { Vex = new VidyaException("No User Found!", ExceptionTypes.Warning) };
         }

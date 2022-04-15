@@ -105,9 +105,6 @@
     <AndroidResource Include="Resources\drawable\vrScan.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Password.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\Geo.jpg" />
   </ItemGroup>
   <ItemGroup>

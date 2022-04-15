@@ -29,6 +29,10 @@ namespace VidyaBase.BLL.Managers
         {
             return await _ownedGameDB.GetAsync(skip, take);
         }
+        public async Task<IEnumerable<OwnedGame>> GetByUserIdAsync(int userId, int skip, int take)
+        {
+            return await _ownedGameDB.GetByUserIdAsync(userId, skip, take);
+        }
 
         public async Task<OwnedGame> GetByIdAsync(int id)
         {

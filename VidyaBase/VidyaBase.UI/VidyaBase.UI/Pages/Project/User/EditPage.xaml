@@ -4,8 +4,8 @@
              x:Class="VidyaBase.UI.Pages.Project.User.EditPage"
              xmlns:viewmodels="clr-namespace:VidyaBase.UI.ViewModels" 
              x:DataType="viewmodels:EditViewModel"
-             
              BackgroundImageSource="GeoLight.jpg">
+    
     <ContentPage.Content>
         <StackLayout>
             <Image Grid.Row="0" Source="ProfilePic.jpg" VerticalOptions="Start" />
@@ -20,4 +20,5 @@
             <Button Text="Edit Profile" Command="{Binding EditCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
+    
 </ContentPage>

@@ -1,5 +1,4 @@
 ﻿using VidyaBase.UI.Pages.Project.User;
-using VidyaBase.UI.Pages.Project.Vidya;
 using Xamarin.Forms;
 
 namespace VidyaBase.UI
@@ -10,7 +9,7 @@ namespace VidyaBase.UI
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ProfilePage());
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()

@@ -15,12 +15,5 @@ namespace VidyaBase.UI.Pages.Project.User
             (BindingContext as ProfileViewModel)?.ShowCurrentUserCommand.Execute(null);
             InitializeComponent();
         }
-
-        //public ProfilePage(UserHelper test)
-        //{
-        //    var viewModel = new ProfileViewModel(test);
-        //    BindingContext = viewModel;
-        //    InitializeComponent();
-        //}
     }
 }

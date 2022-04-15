@@ -4,7 +4,7 @@
              x:Class="VidyaBase.UI.Pages.Project.Vidya.AllGamesPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="Welcome to my testing page!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

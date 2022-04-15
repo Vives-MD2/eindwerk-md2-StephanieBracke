@@ -9,6 +9,9 @@ namespace VidyaBase.UI.Pages.Project.Vidya
     {
         public CollectionPage()
         {
+            CollectionViewModel viewModel = new CollectionViewModel();
+            BindingContext = viewModel;
+            (BindingContext as CollectionViewModel)?.GetCommand.Execute(null);
             InitializeComponent();
         }
     }

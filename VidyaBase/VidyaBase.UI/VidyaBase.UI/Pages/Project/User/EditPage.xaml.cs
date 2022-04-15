@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VidyaBase.UI.HelperModels;
 using VidyaBase.UI.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,6 +16,12 @@ namespace VidyaBase.UI.Pages.Project.User
         public EditPage()
         {
             var viewModel = new EditViewModel();
+            BindingContext = viewModel;
+            InitializeComponent();
+        }
+        public EditPage(UserHelper user)
+        {
+            var viewModel = new EditViewModel(user);
             BindingContext = viewModel;
             InitializeComponent();
         }
