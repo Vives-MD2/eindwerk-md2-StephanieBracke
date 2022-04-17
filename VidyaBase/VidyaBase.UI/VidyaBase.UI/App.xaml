@@ -4,5 +4,24 @@
              x:Class="VidyaBase.UI.App">
     <Application.Resources>
 
+        <ResourceDictionary>
+
+            <!-- Pallete -->
+            <Color x:Key="primary-text-color">#101010</Color>
+            <Color x:Key="secondary-text-color">#181818</Color>
+            <Color x:Key="primary-theme-color">#4666FF</Color>
+            <Color x:Key="secondary-theme-color">#FFB4C1</Color>
+            <Color x:Key="Login-text-color">#ffffff</Color>
+            <Color x:Key="Login-background-color">#BF043055</Color>
+            <Color x:Key="Login-details-color">#088da5</Color>
+            <Color x:Key="Signup-background-color">#D08AAF</Color>
+            <Color x:Key="Signup-text-color">#404040</Color>
+            <Color x:Key="Scan-background-color">#FE26FF</Color>
+            
+            
+            <!-- Pallete-end -->
+
+        </ResourceDictionary>
+
     </Application.Resources>
 </Application>

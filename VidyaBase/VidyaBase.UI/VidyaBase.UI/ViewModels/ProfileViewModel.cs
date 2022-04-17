@@ -59,8 +59,6 @@ namespace VidyaBase.UI.ViewModels
         }
         public async Task ShowCurrentUser()
         {
-            //using stuff met api, hier current user opvragen
-
             int currentUserId = Convert.ToInt32(await SecureStorage.GetAsync("idLoggedInUser"));
 
             using (APIService<IUserApi> service = new APIService<IUserApi>(GlobalVars.VidyaBaseApiLocal))

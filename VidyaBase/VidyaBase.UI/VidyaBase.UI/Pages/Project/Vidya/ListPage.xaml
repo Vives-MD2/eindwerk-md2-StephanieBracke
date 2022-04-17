@@ -4,9 +4,9 @@
              x:Class="VidyaBase.UI.Pages.Project.Vidya.ListPage"
              xmlns:local="clr-namespace:VidyaBase.UI.Pages.Project.Vidya"
             NavigationPage.HasNavigationBar="False"
-            BarBackground="violet"
-            SelectedTabColor="Green"
-            UnselectedTabColor="Aquamarine">
+            BarBackground="#00218A"
+            SelectedTabColor="#535EEB"
+            UnselectedTabColor="#BDBDFD">
     <local:WishlistPage Title="Wishlist"/>
     <local:CollectionPage Title="Collection"/>
 

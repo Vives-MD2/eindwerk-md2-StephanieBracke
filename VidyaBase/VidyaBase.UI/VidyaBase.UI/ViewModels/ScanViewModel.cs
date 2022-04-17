@@ -75,11 +75,9 @@ namespace VidyaBase.UI.ViewModels
                 IBarcodeScannerService qr_scanner = DependencyService.Get<IBarcodeScannerService>();
                 string result = await qr_scanner.SendAsync();
 
-
                 EanCodeInput = result;
                 Debug.WriteLine(EanCodeInput);
                 await UseEanApi(result);
-
             }
             catch (Exception ex)
             {

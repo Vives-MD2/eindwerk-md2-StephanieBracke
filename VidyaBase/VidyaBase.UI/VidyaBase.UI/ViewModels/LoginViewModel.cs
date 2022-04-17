@@ -66,7 +66,7 @@ namespace VidyaBase.UI.ViewModels
             //To store the logged in user: https://gabsikarim.gitbook.io/xamarin/code/topics/secure-storage
             using (APIService<IUserApi> service = new APIService<IUserApi>(GlobalVars.VidyaBaseApiLocal))
             {
-                if (email != string.Empty)
+                if (email != string.Empty && password == "secret")
                 {
                    var response = await service.myService.GetByEmail(email);
                    var user = JsonConvert.DeserializeObject<ApiSingleResponse<User>>(response).Value;
@@ -83,24 +83,6 @@ namespace VidyaBase.UI.ViewModels
                     DisplayInvalidLoginPrompt();
                 }
             }
-
-            //if (Email == string.Empty)
-            //{
-
-            //}
-            //else
-            //{
-            //    await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
-            //}
-
-            //if (email != "stephanie.bracke@student.vives.be" || password != "secret")
-            //{
-            //    DisplayInvalidLoginPrompt();
-            //}
-            //else
-            //{
-            //    await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
-            //}
         }
 
         public async void OnSignUp()

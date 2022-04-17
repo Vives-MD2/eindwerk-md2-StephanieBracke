@@ -8,16 +8,13 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-
             <Style x:Key="ProfileMainStyle" TargetType="Frame">
                 <Setter Property="TranslationY"    Value="{OnPlatform iOS='-150', Android='-33'}"/>
                 <Setter Property="HeightRequest"   Value="{OnPlatform iOS='120', Android='228'}"/>
                 <Setter Property="HasShadow"       Value="False" />
             </Style>
-
         </ResourceDictionary>
     </ContentPage.Resources>
-
 
     <ContentPage.Content>
         <Grid>
@@ -43,23 +40,23 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CurrentUser.FirstName}" FontAttributes="Bold" FontSize="30" TextColor="#101010"/>
-                        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CurrentUser.LastName}" FontSize="16" TextColor="#181818"/>
-                        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CurrentUser.DateOfBirth, StringFormat='{0:dd/MMMM/yyyy}'}" TextColor="	#181818" FontSize="16"/>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CurrentUser.FirstName}" FontAttributes="Bold" FontSize="30" TextColor="{StaticResource Key=primary-text-color}"/>
+                        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CurrentUser.LastName}" FontSize="16" TextColor="{StaticResource Key=secondary-text-color}"/>
+                        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CurrentUser.DateOfBirth, StringFormat='{0:dd/MMMM/yyyy}'}" TextColor="{StaticResource Key=secondary-text-color}" FontSize="16"/>
                         <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Padding="0,10,0,0" FontSize="16">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="Email: " FontAttributes="Bold" TextColor="#080808"/>
-                                    <Span Text="{Binding CurrentUser.Email}" TextColor="#181818" />
+                                    <Span Text="{Binding CurrentUser.Email}" TextColor="{StaticResource Key=secondary-text-color}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
 
                         <!--4. User options: Scan & Lists-->
 
-                        <Button Command="{Binding ScanCommand}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" BackgroundColor="#4666FF" Text="Scan" Margin="0,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
-                        <Button Command="{Binding ListCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" BackgroundColor="#FFB4C1" Text="Lists" Margin="0,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
-                        <Button Command="{Binding EditCommand}" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1" BackgroundColor="#FFB4C1" Text="Edit" Margin="0,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
+                        <Button Command="{Binding ScanCommand}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource Key=primary-theme-color}" Text="Scan" Margin="0,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
+                        <Button Command="{Binding ListCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" BackgroundColor="{StaticResource Key=secondary-theme-color}" Text="Lists" Margin="0,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
+                        <Button Command="{Binding EditCommand}" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1" BackgroundColor="{StaticResource Key=secondary-theme-color}" Text="Edit" Margin="0,50,0,2" FontAttributes="Bold" FontSize="17" HeightRequest="45"/>
                     </Grid>
                 </Frame>
             </StackLayout>

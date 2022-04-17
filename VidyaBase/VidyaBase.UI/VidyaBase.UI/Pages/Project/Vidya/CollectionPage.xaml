@@ -4,12 +4,15 @@
              xmlns:viewmodels="clr-namespace:VidyaBase.UI.ViewModels" 
              xmlns:helpermodels="clr-namespace:VidyaBase.UI.HelperModels"
              x:Class="VidyaBase.UI.Pages.Project.Vidya.CollectionPage"
-             x:DataType="viewmodels:CollectionViewModel">
+             x:DataType="viewmodels:CollectionViewModel"
+             BackgroundColor="#BC75F9">
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Games}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="helpermodels:GameHelper">
-                    <TextCell Text="{Binding DisplayName}" />
+                    <ViewCell Tapped="ViewCell_Tapped">
+                    <Label Text="{Binding DisplayName}" />
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

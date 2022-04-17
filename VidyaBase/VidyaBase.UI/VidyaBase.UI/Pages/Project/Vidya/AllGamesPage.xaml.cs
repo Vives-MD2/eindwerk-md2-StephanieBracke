@@ -14,6 +14,11 @@ namespace VidyaBase.UI.Pages.Project.Vidya
             GetAllGames();
         }
 
+        //Achievement unlocked !
+        //Player Gabsi found the easter egg 
+        //Here's my proof that the metacritic API works !
+
+        //Imagine all the possibilities 
         public async void GetAllGames()
         {
             var client = new HttpClient();
@@ -34,7 +39,6 @@ namespace VidyaBase.UI.Pages.Project.Vidya
                 Console.WriteLine(body);
                await DisplayAlert("Alert", body, "Ok");
             }
-            
         }
     }
 }

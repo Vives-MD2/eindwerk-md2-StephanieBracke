@@ -7,13 +7,13 @@
              BackgroundImageSource="Geo.jpg">
 
     <StackLayout VerticalOptions="CenterAndExpand" Padding="5">
-        <Frame CornerRadius="10" BackgroundColor="#D08AAF" Opacity="0.9" HasShadow="False">
+        <Frame CornerRadius="10" BackgroundColor="{StaticResource Key=Signup-background-color}" Opacity="0.9" HasShadow="False">
             <StackLayout Orientation="Horizontal">
-                <Entry Placeholder="First Name" Text="{Binding NewUser.FirstName}" PlaceholderColor="#404040"></Entry>
-                <Entry Placeholder="Last Name" Text="{Binding NewUser.LastName}" PlaceholderColor="#404040"></Entry>
+                <Entry Placeholder="First Name" Text="{Binding NewUser.FirstName}" PlaceholderColor="{StaticResource Key=Signup-text-color}"></Entry>
+                <Entry Placeholder="Last Name" Text="{Binding NewUser.LastName}" PlaceholderColor="{StaticResource Key=Signup-text-color}"></Entry>
             </StackLayout>
         </Frame>
-        <Frame CornerRadius="40" BackgroundColor="#D08AAF" Opacity="0.95" HasShadow="False">
+        <Frame CornerRadius="40" BackgroundColor="{StaticResource Key=Signup-background-color}" Opacity="0.95" HasShadow="False">
             <StackLayout>
                 <Entry Placeholder="Email" Text="{Binding NewUser.Email}"></Entry>
                 <Entry Placeholder="Password" IsPassword="True"></Entry>
@@ -22,13 +22,13 @@
                 <DatePicker Date="{Binding NewUser.DateOfBirth}" Format="dd MMM yyyy"></DatePicker>
             </StackLayout>
         </Frame>
-        <Frame CornerRadius="10" BackgroundColor="#D08AAF" Opacity="0.9" HasShadow="False">
+        <Frame CornerRadius="10" BackgroundColor="{StaticResource Key=Signup-background-color}" Opacity="0.9" HasShadow="False">
             <StackLayout Orientation="Horizontal">
                 <Label Text="Save Password" TextColor="#403840"></Label>
                 <Switch IsToggled="False"></Switch>
             </StackLayout>
         </Frame>
-        <Button CornerRadius="10" Text="Sign Up" BackgroundColor="#D08AAF" Opacity="0.9" Command="{Binding SignUpCommand}"></Button>
+        <Button CornerRadius="10" Text="Sign Up" BackgroundColor="{StaticResource Key=Signup-background-color}" Opacity="0.9" Command="{Binding SignUpCommand}"></Button>
         <Label Text="Already have account? Sign In" TextColor="CornflowerBlue">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding SignInCommand}" />

@@ -10,13 +10,13 @@
             <Button Text="Scan Barcode"  
                     Command="{Binding ScanEanCodeCommand}"
                 x:Name="btnCamera"  
-                BackgroundColor="Violet"/>
-            <Entry Placeholder="Ean Code" x:Name="eEAN" Text="{Binding ScannedEan.Ean}" />
-            <Entry Placeholder="Game Title" IsEnabled="False" Text="{Binding ScannedEan.Name}"/>
+                BackgroundColor="{StaticResource Key=Scan-background-color}"/>
+                <Entry Placeholder="Ean Code" x:Name="eEAN" Text="{Binding ScannedEan.Ean}" Background="violet" IsEnabled="False"/>
+            <Entry Placeholder="Game Title" IsEnabled="False" Background="violet" Text="{Binding ScannedEan.Name}"/>
         </StackLayout>
             <StackLayout Orientation="Horizontal" Margin="40,0,0,0"  Spacing="30">
-                <Button Text="Add to collection" Command="{Binding CollectionGoCommand}" BackgroundColor="Violet"/>
-                <Button Text="Add to wishlist" Command="{Binding WishlistGoCommand}" BackgroundColor="Violet"/>
+                <Button Text="Add to collection" Command="{Binding CollectionGoCommand}" BackgroundColor="{StaticResource Key=Scan-background-color}"/>
+                <Button Text="Add to wishlist" Command="{Binding WishlistGoCommand}" BackgroundColor="{StaticResource Key=Scan-background-color}"/>
         </StackLayout>
         </StackLayout>
     </ContentPage.Content>

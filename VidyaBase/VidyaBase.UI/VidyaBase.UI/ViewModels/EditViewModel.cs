@@ -49,7 +49,6 @@ namespace VidyaBase.UI.ViewModels
                     EditUser = user;
                 }
             }
-
             await Application.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
         }
     }
