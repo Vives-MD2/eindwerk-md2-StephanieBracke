@@ -15,6 +15,7 @@ namespace VidyaBase.UI.Pages.Project.Vidya
             (BindingContext as WishlistViewModel)?.GetCommand.Execute(null);
             InitializeComponent();
         }
+
         private void ViewCell_Tapped(object sender, System.EventArgs e)
         {
             var value = "#535EEB";

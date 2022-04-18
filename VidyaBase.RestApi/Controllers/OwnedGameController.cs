@@ -59,8 +59,8 @@ namespace VidyaBase.RestApi.Controllers
                     Game = new Game
                     {
                         ID = 1,
-                        EAN = "00000000001",
-                        Title = "SimpleMock"
+                        EAN = "5016488138758",
+                        Title = "PLAYSTATION Kena: Bridge of Spirit"
                     }
                 },
                 new OwnedGame
@@ -70,8 +70,8 @@ namespace VidyaBase.RestApi.Controllers
                     Game = new Game
                     {
                         ID = 2,
-                        EAN = "00000000001",
-                        Title = "Test"
+                        EAN = "4064635400082",
+                        Title = "Farming Simulator 2022"
                     }
                 }
             };
@@ -143,5 +143,4 @@ namespace VidyaBase.RestApi.Controllers
             }
         }
     }
-
 }
