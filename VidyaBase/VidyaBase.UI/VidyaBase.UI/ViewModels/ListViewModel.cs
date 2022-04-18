@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using VidyaBase.UI.AppService.PageService;
+﻿using VidyaBase.UI.AppService.PageService;
 
 namespace VidyaBase.UI.ViewModels
 {

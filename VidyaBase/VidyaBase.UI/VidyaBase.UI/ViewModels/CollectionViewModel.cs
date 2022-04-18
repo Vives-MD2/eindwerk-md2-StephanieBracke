@@ -13,7 +13,6 @@ using Xamarin.Forms;
 
 namespace VidyaBase.UI.ViewModels
 {
-
     public class CollectionViewModel : BaseViewModel
     {
         private readonly PageService pageService = new PageService();
