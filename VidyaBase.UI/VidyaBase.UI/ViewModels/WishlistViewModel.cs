@@ -38,7 +38,7 @@ namespace VidyaBase.UI.ViewModels
                 string userIdAsString = await SecureStorage.GetAsync("idLoggedInUser");
                 int userId = Convert.ToInt32(userIdAsString);
 
-                using (APIService<IWishlistGameApi> service = new APIService<IWishlistGameApi>(GlobalVars.VidyaBaseApiLocal))
+                using (APIService<IWishlistGameApi> service = new APIService<IWishlistGameApi>(GlobalVars.VidyaBaseApiOnline))
                 {
                     string response = await service.myService.GetByUserId(userId, 0, 500);
                     IEnumerable<WishlistGameHelper> games = JsonConvert.DeserializeObject<ApiMultiResponse<WishlistGameHelper>>(response).Value;

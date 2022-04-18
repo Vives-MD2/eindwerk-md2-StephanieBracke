@@ -38,7 +38,7 @@ namespace VidyaBase.UI.ViewModels
                 string userIdAsString = await SecureStorage.GetAsync("idLoggedInUser");
                 int userId = Convert.ToInt32(userIdAsString);
 
-                using (APIService<IOwnedGameApi> service = new APIService<IOwnedGameApi>(GlobalVars.VidyaBaseApiLocal))
+                using (APIService<IOwnedGameApi> service = new APIService<IOwnedGameApi>(GlobalVars.VidyaBaseApiOnline))
                 {
                     string response = await service.myService.GetByUserId(userId, 0, 500);
                     IEnumerable<OwnedGameHelper> games = JsonConvert.DeserializeObject<ApiMultiResponse<OwnedGameHelper>>(response).Value;

@@ -40,7 +40,7 @@ namespace VidyaBase.UI.ViewModels
 
         public async Task OnSignUp()
         {
-            using (APIService<IUserApi> service = new APIService<IUserApi>(GlobalVars.VidyaBaseApiLocal))
+            using (APIService<IUserApi> service = new APIService<IUserApi>(GlobalVars.VidyaBaseApiOnline))
             {
                 var response = await service.myService.Create(NewUser);
 

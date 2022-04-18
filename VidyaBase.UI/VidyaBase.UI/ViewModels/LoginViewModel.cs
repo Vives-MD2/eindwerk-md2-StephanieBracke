@@ -64,7 +64,7 @@ namespace VidyaBase.UI.ViewModels
         public async Task OnSubmit()
         {
             //To store the logged in user: https://gabsikarim.gitbook.io/xamarin/code/topics/secure-storage
-            using (APIService<IUserApi> service = new APIService<IUserApi>(GlobalVars.VidyaBaseApiLocal))
+            using (APIService<IUserApi> service = new APIService<IUserApi>(GlobalVars.VidyaBaseApiOnline))
             {
                 if (email != string.Empty && password == "secret")
                 {

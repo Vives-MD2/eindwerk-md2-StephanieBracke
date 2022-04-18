@@ -9,4 +9,5 @@ namespace VidyaBase.UI
         public static string VidyaBaseApiLocal = "https://10.0.2.2:5001/api";
         public static string VidyaBaseApiOnline = "http://user22.vivesxamarin.com/api"; 
     }
+
 }

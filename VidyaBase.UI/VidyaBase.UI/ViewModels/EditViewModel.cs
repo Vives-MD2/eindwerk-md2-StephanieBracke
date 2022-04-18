@@ -40,7 +40,7 @@ namespace VidyaBase.UI.ViewModels
 
         private async Task OnEdit()
         {
-            using (APIService<IUserApi> service = new APIService<IUserApi>(GlobalVars.VidyaBaseApiLocal))
+            using (APIService<IUserApi> service = new APIService<IUserApi>(GlobalVars.VidyaBaseApiOnline))
             {
                 if (EditUser.ID != 0)
                 {

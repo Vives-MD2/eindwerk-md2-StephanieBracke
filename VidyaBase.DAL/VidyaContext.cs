@@ -8,7 +8,7 @@ namespace VidyaBase.DAL
 {
     class VidyaContext : DbContext
     {
-        //<MoetNogIngevuldWorden>
+
         public static string LocalConnectionString { get; set; } = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VidyaDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public static string OnlineConnectionString { get; set; } = @"Data Source=SQL6012.site4now.net;Initial Catalog=db_a637bf_stephaniebracke;User Id=db_a637bf_stephaniebracke_admin;Password=xamarin5";
 
@@ -18,8 +18,8 @@ namespace VidyaBase.DAL
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(LocalConnectionString);
-            //optionsBuilder.UseSqlServer(OnlineConnectionString);
+            //optionsBuilder.UseSqlServer(LocalConnectionString);
+            optionsBuilder.UseSqlServer(OnlineConnectionString);
             //optionsBuilder.EnableSensitiveDataLogging(true);
         }
 
