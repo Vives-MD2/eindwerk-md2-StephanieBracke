@@ -1,5 +1,4 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,12 +13,6 @@ using Xamarin.Forms;
 
 namespace VidyaBase.UI.ViewModels
 {
-    public struct GetParam
-    {
-        public int UserId;
-        public int Skip;
-        public int Take;
-    }
 
     public class CollectionViewModel : BaseViewModel
     {

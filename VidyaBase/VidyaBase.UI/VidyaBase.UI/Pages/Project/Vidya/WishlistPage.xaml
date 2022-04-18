@@ -1,13 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:VidyaBase.UI.ViewModels" 
+             xmlns:helpermodels="clr-namespace:VidyaBase.UI.HelperModels"
              x:Class="VidyaBase.UI.Pages.Project.Vidya.WishlistPage"
+             x:DataType="viewmodels:WishlistViewModel"
              BackgroundColor="#BC75F9">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Wishlists"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ListView ItemsSource="{Binding Games}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="helpermodels:GameHelper">
+                    <ViewCell Tapped="ViewCell_Tapped">
+                    <Label Text="{Binding DisplayName}" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

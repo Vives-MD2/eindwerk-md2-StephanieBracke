@@ -4,6 +4,13 @@ using System.Runtime.CompilerServices;
 
 namespace VidyaBase.UI.ViewModels
 {
+    public struct GetParam
+    {
+        public int UserId;
+        public int Skip;
+        public int Take;
+    }
+
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
